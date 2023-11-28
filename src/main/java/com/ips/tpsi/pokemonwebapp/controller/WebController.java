@@ -19,4 +19,16 @@ public class WebController {
         mv.addObject("nome", "danilo");
         return mv;
     }
+
+    @GetMapping("/home")
+    public ModelAndView getHome() {
+        ModelAndView mv = new ModelAndView("home.html");
+        return mv;
+    }
+
+    @GetMapping("/home")
+    public ModelAndView getHome() {
+        ModelAndView mv = new ModelAndView("home.html");
+        return mv;
+    }
 }
