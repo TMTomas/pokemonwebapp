@@ -20,14 +20,14 @@ public class WebController {
         return mv;
     }
 
-    @GetMapping("/home")
-    public ModelAndView getHome() {
+    @GetMapping("/sobre-nos")
+    public ModelAndView getSobreNos() {
         ModelAndView mv = new ModelAndView("home.html");
         return mv;
     }
 
-    @GetMapping("/home")
-    public ModelAndView getHome() {
+    @GetMapping("/consulta")
+    public ModelAndView getConsulta() {
         ModelAndView mv = new ModelAndView("home.html");
         return mv;
     }
