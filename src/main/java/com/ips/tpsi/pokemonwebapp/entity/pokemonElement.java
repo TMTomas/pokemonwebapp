@@ -23,7 +23,7 @@ public class pokemonElement {
 
     @Id
     @Column(name = "element_id")
-    private String elementId;
+    private Integer elementId;
 
     @Column(name = "element_number")
     private Integer elementNumber;
