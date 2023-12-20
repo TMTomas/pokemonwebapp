@@ -1,22 +1,93 @@
 body {
-    width: 1000px;
-    margin: 1em auto;
-    font-family: "Lucida Sans", Verdana, sans-serif;
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f4f4f4; /* Cor de fundo geral */
 }
 
-form {
-	display: contents;
+.container-header {
+    background-color: #c7a008; /* Cor do container do header */
+    padding: 20px;
+    text-align: center;
+}
+
+.container-content {
+    background-color: #c7a008; /* Cor do container de conteúdo */
+    padding: 20px;
+    text-align: center;
+}
+
+h1 {
+    color: #fff; /* Cor do título */
+}
+
+p {
+    margin: 20px 0;
+}
+
+nav {
+    background-color: #3c5aa6; /* Cor de fundo da navegação */
+    padding: 10px;
+    text-align: center;
 }
 
 nav a {
+    color: #fff; /* Cor do texto do link */
     text-decoration: none;
-    display: inline-block;
-    padding: 0.5em 1em;
-    margin-right: 2em;
-    color: white;
-    background-color: #0074cc;
+    margin: 0 10px;
 }
 
 nav a:hover {
-    background-color: #00589e;
+    text-decoration: underline; /* Adiciona sublinhado ao passar o mouse sobre o link */
 }
+
+.container-blue {
+    background-color: #3c5aa6;
+    padding: 20px;
+    text-align: center;
+}
+
+.container-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 20px;
+}
+
+.person {
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 8px;
+}
+
+.person img {
+    max-width: 100%;
+    border-radius: 50%;
+}
+
+h2 {
+    margin-top: 10px;
+    color: #3c5aa6;
+}
+
+.container-red {
+    background-color: #CC0000;
+    color: #fff;
+    padding: 20px;
+    text-align: center;
+    font-weight: bold;
+    max-width: 800px; /* Adicionei uma largura máxima para o contêiner */
+    margin: 20px auto; /* Centralizei o contêiner horizontalmente */
+    box-sizing: border-box; /* Garante que a largura máxima inclui o padding */
+}
+
+.red-text {
+    margin: 0 20px;
+}
+
+.person-number {
+    margin-top: 5px; /* Espaçamento entre o nome e o número */
+    color: black; /* Cor do número, você pode ajustar conforme necessário */
+    font-weight: bold;
+}
+
+
