@@ -41,10 +41,10 @@ public class Pokemon {
     private Integer speed;
 
     @Column(name = "speed_attack")
-    private Integer speed_attack;
+    private Integer speedAttack;
 
     @Column(name = "speed_defense")
-    private Integer speed_defense;
+    private Integer speedDefense;
 
     @Column(name = "generation")
     private Integer generation;

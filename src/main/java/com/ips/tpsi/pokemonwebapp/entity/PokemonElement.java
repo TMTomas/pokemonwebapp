@@ -3,6 +3,7 @@ package com.ips.tpsi.pokemonwebapp.entity;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
+import jakarta.persistence.IdClass;
 import jakarta.persistence.Table;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -16,7 +17,9 @@ import lombok.Setter;
 @Getter
 @Setter
 
+@IdClass(PokemonElementId.class)
 public class PokemonElement {
+
     @Id
     @Column(name = "pokemon_id")
     private Integer pokemonId;
