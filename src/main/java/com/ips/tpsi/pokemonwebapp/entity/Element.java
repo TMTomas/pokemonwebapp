@@ -16,7 +16,7 @@ import lombok.Setter;
 @Getter
 @Setter
 
-public class element {
+public class Element {
     @Id
     @Column(name = "id_element")
     private Integer idElement;

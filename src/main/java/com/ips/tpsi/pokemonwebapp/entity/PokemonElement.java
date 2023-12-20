@@ -16,7 +16,7 @@ import lombok.Setter;
 @Getter
 @Setter
 
-public class pokemonElement {
+public class PokemonElement {
     @Id
     @Column(name = "pokemon_id")
     private Integer pokemonId;

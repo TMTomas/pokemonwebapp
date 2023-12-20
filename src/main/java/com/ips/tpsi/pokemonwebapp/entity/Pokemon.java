@@ -16,7 +16,7 @@ import lombok.Setter;
 @Getter
 @Setter
 
-public class pokemon {
+public class Pokemon {
 
     @Id
     @Column(name = "id_pokemon")
