@@ -1,4 +1,4 @@
-package com.ips.tpsi.bc;
+package com.ips.tpsi.pokemonwebapp.bc;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;

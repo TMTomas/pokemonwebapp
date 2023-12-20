@@ -1,4 +1,4 @@
-package com.ips.tpsi.bc;
+package com.ips.tpsi.pokemonwebapp.bc;
 
 public class PokemonElementService {
     
