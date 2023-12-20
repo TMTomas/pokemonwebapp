@@ -90,4 +90,123 @@ h2 {
     font-weight: bold;
 }
 
+/* Estilo para a tabela de busca */
+table {
+    border-collapse: collapse;
+    width: 100%;
+    margin-bottom: 20px;
+}
 
+table, th, td {
+    border: 1px solid #ddd;
+}
+
+th, td {
+    padding: 12px;
+    text-align: left;
+}
+
+th {
+    background-color: #f2f2f2;
+}
+
+/* Estilo para o botão "Voltar à lista" */
+#back-button {
+    background-color: #4CAF50;
+    color: white;
+    padding: 10px 15px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+#back-button:hover {
+    background-color: #45a049;
+}
+
+/* Estilo para a tabela de todos os Pokémons */
+table#all-pokemons {
+    border-collapse: collapse;
+    width: 100%;
+}
+
+table#all-pokemons, th, td {
+    border: 1px solid #ddd;
+}
+
+th, td {
+    padding: 12px;
+    text-align: left;
+}
+
+th {
+    background-color: #4CAF50;
+    color: white;
+}
+
+/* Estilo para o formulário de busca por nome */
+#search-form {
+    margin-top: 20px;
+    margin-bottom: 20px;
+    text-align: center;
+}
+
+#search-form label {
+    font-size: 18px;  /* Ajuste o tamanho da fonte do rótulo conforme necessário */
+}
+
+#pokemon-name {
+    padding: 12px;  /* Ajuste o espaçamento interno conforme necessário */
+    font-size: 18px;  /* Ajuste o tamanho da fonte conforme necessário */
+    width: 300px;  /* Ajuste a largura do campo conforme necessário */
+}
+
+button[type="submit"] {
+    padding: 12px 20px;  /* Ajuste o espaçamento interno conforme necessário */
+    font-size: 16px;  /* Ajuste o tamanho da fonte conforme necessário */
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+button[type="submit"]:hover {
+    background-color: #45a049;
+}
+
+/* Estilo para a tabela de resultados da busca */
+#search-result-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+}
+
+#search-result-table, #search-result-table th, #search-result-table td {
+    border: 1px solid #ddd;
+}
+
+#search-result-table th, #search-result-table td {
+    padding: 12px;
+    text-align: left;
+}
+
+#search-result-table th {
+    background-color: #4CAF50;
+    color: white;
+}
+
+/* Estilo para o botão "Voltar à lista" */
+#back-button {
+    background-color: #4CAF50;
+    color: white;
+    padding: 12px 20px;  /* Ajuste o espaçamento interno conforme necessário */
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    margin-top: 10px;
+}
+
+#back-button:hover {
+    background-color: #45a049;
+}

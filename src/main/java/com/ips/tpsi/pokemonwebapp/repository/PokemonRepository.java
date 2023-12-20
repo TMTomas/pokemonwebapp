@@ -8,5 +8,5 @@ import org.springframework.stereotype.Repository;
 public interface PokemonRepository
 		extends JpaRepository<Pokemon, Integer> {
 
-		Pokemon findPokemonBypokemonName(String pokemonName);
+		Pokemon findByPokemonNameIgnoreCase(String pokemonName);
 }

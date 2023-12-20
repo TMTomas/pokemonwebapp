@@ -1,4 +1,5 @@
 package com.ips.tpsi.pokemonwebapp.bc;
+import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -11,6 +12,7 @@ import com.ips.tpsi.pokemonwebapp.repository.PokemonRepository;
 public class PokemonService {
     @Autowired
     private PokemonRepository pokemonRepository;
+    public List<Pokemon> getPokemons;
 
     public Optional<Pokemon> getPokemon(final Integer id) {
         return pokemonRepository.findById(id);
@@ -24,7 +26,7 @@ public class PokemonService {
     	pokemonRepository.deleteById(id);
     }
 
-    public Pokemon getPokemonInfoByName(String name) {
-        return pokemonRepository.findPokemonBypokemonName(name);
+    public Pokemon getPokemonInfoByName(String pokemonName) {
+        return pokemonRepository.findByPokemonNameIgnoreCase(pokemonName);
     }
 }

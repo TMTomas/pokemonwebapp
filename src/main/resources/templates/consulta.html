@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Consulta</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+
+<body>
+    <div class="container-header">
+        <h1>Consulta de Pokémons</h1>
+        <p>Nesta página, é possível realizar uma consulta de pokemóns.</p>
+    </div>
+
+    <nav>
+        <a href="/sobre-nos">Sobre Nós</a>
+        <a href="/consulta">Consultar</a>
+        <a href="/alterar">Alterar</a>
+        <a href="/apagar">Apagar</a>
+    </nav>
+
+    <form id="search-form" th:action="@{/consulta}" method="get">
+        <label for="pokemon-name">Buscar por nome:</label>
+        <input type="text" id="pokemon-name" name="pokemonName" />
+        <button type="submit">Buscar</button>
+    </form>
+
+    <div th:if="${searchResult != null}">
+        <h2>Resultado da busca:</h2>
+        <table>
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Nome</th>
+                    <th>Total</th>
+                    <th>HP</th>
+                    <th>Attack</th>
+                    <th>Defense</th>
+                    <th>Speed</th>
+                    <th>Speed Attack</th>
+                    <th>Speed Defense</th>
+                    <th>Generation</th>
+                    <th>Legendary</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td th:text="${searchResult.idPokemon}"></td>
+                    <td th:text="${searchResult.pokemonName}"></td>
+                    <td th:text="${searchResult.total}"></td>
+                    <td th:text="${searchResult.hp}"></td>
+                    <td th:text="${searchResult.attack}"></td>
+                    <td th:text="${searchResult.defense}"></td>
+                    <td th:text="${searchResult.speed}"></td>
+                    <td th:text="${searchResult.speedAttack}"></td>
+                    <td th:text="${searchResult.speedDefense}"></td>
+                    <td th:text="${searchResult.generation}"></td>
+                    <td th:text="${searchResult.legendary}"></td>
+                </tr>
+            </tbody>
+        </table>
+        <button id="back-button" type="button" onclick="window.location.href='/consulta'">Voltar à lista</button>
+    </div>
+    
+
+    <table th:if="${searchResult == null}">
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Nome</th>
+                <th>Total</th>
+                <th>HP</th>
+                <th>Attack</th>
+                <th>Defense</th>
+                <th>Speed</th>
+                <th>Speed Attack</th>
+                <th>Speed Defense</th>
+                <th>Generation</th>
+                <th>Legendary</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr th:each="pokemon : ${pokemons}">
+                <td th:text="${pokemon.idPokemon}"></td>
+                <td th:text="${pokemon.pokemonName}"></td>
+                <td th:text="${pokemon.total}"></td>
+                <td th:text="${pokemon.hp}"></td>
+                <td th:text="${pokemon.attack}"></td>
+                <td th:text="${pokemon.defense}"></td>
+                <td th:text="${pokemon.speed}"></td>
+                <td th:text="${pokemon.speedAttack}"></td>
+                <td th:text="${pokemon.speedDefense}"></td>
+                <td th:text="${pokemon.generation}"></td>
+                <td th:text="${pokemon.legendary}"></td>
+            </tr>
+        </tbody>
+    </table>
+
+</body>
+
+</html>
