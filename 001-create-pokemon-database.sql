@@ -1,3 +1,6 @@
+create database pokemonproject;
+use pokemonproject;
+
 -- Create Pokemon table
 CREATE TABLE pokemon (
     id_pokemon INT AUTO_INCREMENT PRIMARY KEY,
@@ -10,7 +13,7 @@ CREATE TABLE pokemon (
     speed_attack INT NOT NULL,
     speed_defense INT NOT NULL,
     generation INT NOT NULL,
-    legendary BOOLEAN NOT NULL
+    legendary varchar(255) NOT NULL
 );
 
 -- Create Element table
