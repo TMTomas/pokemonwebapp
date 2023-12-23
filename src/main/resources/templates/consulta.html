@@ -45,21 +45,25 @@
                     <th>Speed Defense</th>
                     <th>Generation</th>
                     <th>Legendary</th>
+                    <th>Type 1</th>
+                    <th>Type 2</th>
                 </tr>
             </thead>
             <tbody>
                 <tr>
-                    <td th:text="${searchResult.idPokemon}"></td>
-                    <td th:text="${searchResult.pokemonName}"></td>
-                    <td th:text="${searchResult.total}"></td>
-                    <td th:text="${searchResult.hp}"></td>
-                    <td th:text="${searchResult.attack}"></td>
-                    <td th:text="${searchResult.defense}"></td>
-                    <td th:text="${searchResult.speed}"></td>
-                    <td th:text="${searchResult.speedAttack}"></td>
-                    <td th:text="${searchResult.speedDefense}"></td>
-                    <td th:text="${searchResult.generation}"></td>
-                    <td th:text="${searchResult.legendary}"></td>
+                    <td th:text="${searchResult[0].idPokemon}"></td>
+                    <td th:text="${searchResult[0].pokemonName}"></td>
+                    <td th:text="${searchResult[0].total}"></td>
+                    <td th:text="${searchResult[0].hp}"></td>
+                    <td th:text="${searchResult[0].attack}"></td>
+                    <td th:text="${searchResult[0].defense}"></td>
+                    <td th:text="${searchResult[0].speed}"></td>
+                    <td th:text="${searchResult[0].speedAttack}"></td>
+                    <td th:text="${searchResult[0].speedDefense}"></td>
+                    <td th:text="${searchResult[0].generation}"></td>
+                    <td th:text="${searchResult[0].legendary}"></td>
+                    <td th:text="${searchResult[1]}"></td>
+                    <td th:text="${searchResult[2]}"></td>
                 </tr>
             </tbody>
         </table>
@@ -81,21 +85,25 @@
                 <th>Speed Defense</th>
                 <th>Generation</th>
                 <th>Legendary</th>
+                <th>Type 1</th>
+                <th>Type 2</th>
             </tr>
         </thead>
         <tbody>
             <tr th:each="pokemon : ${pokemons}">
-                <td th:text="${pokemon.idPokemon}"></td>
-                <td th:text="${pokemon.pokemonName}"></td>
-                <td th:text="${pokemon.total}"></td>
-                <td th:text="${pokemon.hp}"></td>
-                <td th:text="${pokemon.attack}"></td>
-                <td th:text="${pokemon.defense}"></td>
-                <td th:text="${pokemon.speed}"></td>
-                <td th:text="${pokemon.speedAttack}"></td>
-                <td th:text="${pokemon.speedDefense}"></td>
-                <td th:text="${pokemon.generation}"></td>
-                <td th:text="${pokemon.legendary}"></td>
+                <td th:text="${pokemon[0].idPokemon}"></td>
+                <td th:text="${pokemon[0].pokemonName}"></td>
+                <td th:text="${pokemon[0].total}"></td>
+                <td th:text="${pokemon[0].hp}"></td>
+                <td th:text="${pokemon[0].attack}"></td>
+                <td th:text="${pokemon[0].defense}"></td>
+                <td th:text="${pokemon[0].speed}"></td>
+                <td th:text="${pokemon[0].speedAttack}"></td>
+                <td th:text="${pokemon[0].speedDefense}"></td>
+                <td th:text="${pokemon[0].generation}"></td>
+                <td th:text="${pokemon[0].legendary}"></td>
+                <td th:text="${pokemon[1]}"></td>
+                <td th:text="${pokemon[2]}"></td>
             </tr>
         </tbody>
     </table>

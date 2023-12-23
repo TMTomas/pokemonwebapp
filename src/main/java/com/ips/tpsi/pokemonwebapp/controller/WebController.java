@@ -36,11 +36,11 @@ public class WebController {
         ModelAndView mv = new ModelAndView("consulta.html");
 
         if (pokemonName != null && !pokemonName.isEmpty()) {
-            Pokemon pokemon = bc.getPokemonInfoByName(pokemonName);
+            Object pokemon = bc.getPokemonInfoByName(pokemonName);
             mv.addObject("searchResult", pokemon);
         }
 
-        mv.addObject("pokemons", bc.getPokemons());
+        mv.addObject("pokemons", bc.getPokemonsWithTypes());
         return mv;
     }
 
