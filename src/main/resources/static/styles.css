@@ -2,49 +2,85 @@ body {
     font-family: Arial, sans-serif;
     margin: 0;
     padding: 0;
-    background-color: #f4f4f4; /* Cor de fundo geral */
-}
-
-.container-header {
-    background-color: #c7a008; /* Cor do container do header */
-    padding: 20px;
-    text-align: center;
-}
-
-.container-content {
-    background-color: #c7a008; /* Cor do container de conteúdo */
-    padding: 20px;
-    text-align: center;
+    background-color: #fff;
+    /* Cor de fundo geral */
 }
 
 h1 {
-    color: #fff; /* Cor do título */
+    color: #fff;
+    /* Cor do título */
 }
 
-p {
-    margin: 20px 0;
+h2 {
+    margin-top: 10px;
+    color: #e3350d;
+    /* Cor do título (vermelho Pokémon) */
 }
 
 nav {
-    background-color: #3c5aa6; /* Cor de fundo da navegação */
+    background-color: #424242;
+    /* Cor de fundo da navegação (preto) */
     padding: 10px;
     text-align: center;
 }
 
 nav a {
-    color: #fff; /* Cor do texto do link */
+    color: #fff;
+    /* Cor do texto do link */
     text-decoration: none;
     margin: 0 10px;
+    font-size: x-large;
 }
 
 nav a:hover {
-    text-decoration: underline; /* Adiciona sublinhado ao passar o mouse sobre o link */
+    text-decoration: underline;
+    /* Adiciona sublinhado ao passar o mouse sobre o link */
 }
 
-.container-blue {
-    background-color: #3c5aa6;
+
+
+.container-header {
+    background-color: #e3350d;
+    /* Cor do container do header (vermelho Pokémon) */
     padding: 20px;
     text-align: center;
+}
+
+.container-header h2 {
+    color: white;
+}
+
+.container-black {
+    background-color: #424242;
+    /* Cor de fundo (preto) */
+    color: #fff;
+    padding: 20px;
+    text-align: center;
+}
+
+.container-red {
+    background-color: #e3350d;
+    /* Cor de fundo (vermelho Pokémon) */
+    color: #fff;
+    padding: 20px;
+    text-align: center;
+    font-weight: bold;
+    max-width: 800px;
+    /* Adicionei uma largura máxima para o contêiner */
+    margin: 20px auto;
+    /* Centralizei o contêiner horizontalmente */
+    box-sizing: border-box;
+    /* Garante que a largura máxima inclui o padding */
+}
+
+.container-red h3 {
+    font-size: x-large;
+    font-weight: bold;
+    line-height: 1.6;
+    color: #fff;
+    text-align: center;
+    max-width: 800px;
+    margin: 0 auto 20px;
 }
 
 .container-grid {
@@ -59,35 +95,45 @@ nav a:hover {
     border-radius: 8px;
 }
 
-.person img {
-    max-width: 100%;
-    border-radius: 50%;
-}
-
-h2 {
-    margin-top: 10px;
-    color: #3c5aa6;
-}
-
-.container-red {
-    background-color: #CC0000;
-    color: #fff;
-    padding: 20px;
-    text-align: center;
-    font-weight: bold;
-    max-width: 800px; /* Adicionei uma largura máxima para o contêiner */
-    margin: 20px auto; /* Centralizei o contêiner horizontalmente */
-    box-sizing: border-box; /* Garante que a largura máxima inclui o padding */
-}
-
-.red-text {
-    margin: 0 20px;
-}
-
 .person-number {
-    margin-top: 5px; /* Espaçamento entre o nome e o número */
-    color: black; /* Cor do número, você pode ajustar conforme necessário */
+    margin-top: 5px;
+    /* Espaçamento entre o nome e o número */
+    color: #000;
+    /* Cor do número, você pode ajustar conforme necessário (preto) */
     font-weight: bold;
+}
+
+.search-container {
+    display: flex;
+    align-items: center;
+    border-radius: 25px;
+    /* Cantos bem arredondados */
+    overflow: hidden;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.search-input {
+    flex: 1;
+    border: none;
+    padding: 10px;
+    font-size: 24px;
+    border-radius: 25px 0 0 25px;
+    /* Cantos bem arredondados */
+}
+
+.search-button {
+    background-color: #e3350d;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    cursor: pointer;
+    font-size: 24px;
+    border-radius: 0 25px 25px 0;
+    /* Cantos bem arredondados */
+}
+
+.search-button:hover {
+    background-color: #ff5942;
 }
 
 /* Estilo para a tabela de busca */
@@ -97,116 +143,80 @@ table {
     margin-bottom: 20px;
 }
 
-table, th, td {
-    border: 1px solid #ddd;
-}
-
-th, td {
-    padding: 12px;
-    text-align: left;
-}
-
-th {
-    background-color: #f2f2f2;
-}
-
-/* Estilo para o botão "Voltar à lista" */
-#back-button {
-    background-color: #4CAF50;
-    color: white;
-    padding: 10px 15px;
-    border: none;
-    border-radius: 4px;
-    cursor: pointer;
-}
-
-#back-button:hover {
-    background-color: #45a049;
-}
-
-/* Estilo para a tabela de todos os Pokémons */
-table#all-pokemons {
-    border-collapse: collapse;
-    width: 100%;
-}
-
-table#all-pokemons, th, td {
-    border: 1px solid #ddd;
-}
-
-th, td {
-    padding: 12px;
-    text-align: left;
-}
-
-th {
-    background-color: #4CAF50;
-    color: white;
-}
-
-/* Estilo para o formulário de busca por nome */
-#search-form {
-    margin-top: 20px;
-    margin-bottom: 20px;
-    text-align: center;
-}
-
-#search-form label {
-    font-size: 18px;  /* Ajuste o tamanho da fonte do rótulo conforme necessário */
-}
-
-#pokemon-name {
-    padding: 12px;  /* Ajuste o espaçamento interno conforme necessário */
-    font-size: 18px;  /* Ajuste o tamanho da fonte conforme necessário */
-    width: 300px;  /* Ajuste a largura do campo conforme necessário */
-}
-
-button[type="submit"] {
-    padding: 12px 20px;  /* Ajuste o espaçamento interno conforme necessário */
-    font-size: 16px;  /* Ajuste o tamanho da fonte conforme necessário */
-    background-color: #4CAF50;
-    color: white;
-    border: none;
-    border-radius: 4px;
-    cursor: pointer;
-}
-
-button[type="submit"]:hover {
-    background-color: #45a049;
-}
-
-/* Estilo para a tabela de resultados da busca */
+/* Estilo para tabelas */
+table,
 #search-result-table {
-    width: 100%;
     border-collapse: collapse;
-    margin-top: 20px;
+    width: 100%;
+    margin-bottom: 20px;
 }
 
-#search-result-table, #search-result-table th, #search-result-table td {
+table,
+#search-result-table th,
+#search-result-table td {
     border: 1px solid #ddd;
 }
 
-#search-result-table th, #search-result-table td {
+th,
+td {
     padding: 12px;
     text-align: left;
+    font-size: 20px;
+}
+
+/* Estilo para cabeçalhos de tabela */
+th,
+#search-result-table th {
+    background-color: #424242;
+    /* Cor de fundo (preto) para tabelas comuns */
+    color: #fff;
+    /* Cor do texto (branco) para tabelas comuns */
 }
 
 #search-result-table th {
     background-color: #4CAF50;
+    /* Cor de fundo (verde) para a tabela de resultados de busca */
     color: white;
 }
 
+#search-result-table {
+    margin-top: 20px;
+}
+
+.pokemon-info {
+    margin-top: 20px;
+    text-align: center;
+}
+
+.pokemon-info h2 {
+    color: #e3350d; /* Vermelho Pokemon */
+}
+
+.pokemon-info table {
+    width: 100%;
+    margin-top: 20px;
+    border-collapse: collapse;
+    background-color: #fff; /* Fundo branco */
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+
 /* Estilo para o botão "Voltar à lista" */
 #back-button {
-    background-color: #4CAF50;
-    color: white;
-    padding: 12px 20px;  /* Ajuste o espaçamento interno conforme necessário */
+    background-color: #e3350d;
+    /* Cor de fundo (vermelho Pokémon) */
+    color: #fff;
+    /* Cor do texto (branco) */
+    padding: 12px 20px;
+    /* Ajuste o espaçamento interno conforme necessário */
     border: none;
     border-radius: 4px;
     cursor: pointer;
     margin-top: 10px;
+    font-size: 24px;
 }
 
 #back-button:hover {
-    background-color: #45a049;
+    background-color: #af2b08;
+    /* Cor de fundo ao passar o mouse (tom mais escuro de vermelho Pokémon) */
 }

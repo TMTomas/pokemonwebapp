@@ -10,8 +10,8 @@
 
 <body>
     <div class="container-header">
-        <h1>Consulta de Pokémons</h1>
-        <p>Nesta página, é possível realizar uma consulta de pokemóns.</p>
+        <h1>Consultar Pokémons</h1>
+        <h2>Nesta página, é possível realizar uma consulta de pokemóns</h2>
     </div>
 
     <nav>
@@ -21,13 +21,15 @@
         <a href="/apagar">Apagar</a>
     </nav>
 
-    <form id="search-form" th:action="@{/consulta}" method="get">
-        <label for="pokemon-name">Buscar por nome:</label>
-        <input type="text" id="pokemon-name" name="pokemonName" />
-        <button type="submit">Buscar</button>
-    </form>
+    <div class="container-black">
+        <form id="search-form" th:action="@{/consulta}" method="get" class="search-container">
+            <input type="text" id="pokemon-name" name="pokemonName" placeholder="Consultar Pokémon"
+                class="search-input" />
+            <button type="submit" class="search-button">Buscar</button>
+        </form>
+    </div>
 
-    <div th:if="${searchResult != null}">
+    <div class="pokemon-info" th:if="${searchResult != null}">
         <h2>Resultado da busca:</h2>
         <table>
             <thead>
@@ -63,7 +65,7 @@
         </table>
         <button id="back-button" type="button" onclick="window.location.href='/consulta'">Voltar à lista</button>
     </div>
-    
+
 
     <table th:if="${searchResult == null}">
         <thead>
