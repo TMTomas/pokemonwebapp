@@ -5,18 +5,21 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
-
+import com.ips.tpsi.pokemonwebapp.bc.ElementService;
 import com.ips.tpsi.pokemonwebapp.bc.PokemonService;
-import com.ips.tpsi.pokemonwebapp.entity.Pokemon;
 
 @Controller
 public class WebController {
 
-     @Autowired
-    PokemonService bc;
+    @Autowired
+    PokemonService pokemonBC;
 
-    public WebController(PokemonService bc) {
-        this.bc = bc;
+    @Autowired
+    ElementService elementBC;
+
+    public WebController(PokemonService pokemonBC, ElementService elementBC) {
+        this.pokemonBC = pokemonBC;
+        this.elementBC = elementBC;
     }
 
     @GetMapping("/index")
@@ -32,15 +35,22 @@ public class WebController {
     }
 
     @GetMapping("/consulta")
-    public ModelAndView getConsulta(@RequestParam(name = "pokemonName", required = false) String pokemonName) {
+    public ModelAndView getConsulta(@RequestParam(name = "pokemonName", required = false) String pokemonName,
+            @RequestParam(name = "elementDesc", required = false) String elementDesc) {
         ModelAndView mv = new ModelAndView("consulta.html");
 
         if (pokemonName != null && !pokemonName.isEmpty()) {
-            Object pokemon = bc.getPokemonInfoByName(pokemonName);
-            mv.addObject("searchResult", pokemon);
+            mv.addObject("pokemonByName", pokemonBC.getDetailedPokemonByName(pokemonName));
         }
 
-        mv.addObject("pokemons", bc.getPokemonsWithTypes());
+        if (elementDesc != null && !elementDesc.isEmpty()) {
+            mv.addObject("pokemonsByElement", pokemonBC.getDetailedPokemonsByElement(elementDesc));
+        }
+
+        mv.addObject("selectedType", elementDesc);
+        mv.addObject("pokemons", pokemonBC.getDetailedPokemons());
+        mv.addObject("types", elementBC.getElements());
+
         return mv;
     }
 

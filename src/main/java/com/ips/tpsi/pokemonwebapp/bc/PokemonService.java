@@ -17,23 +17,27 @@ public class PokemonService {
         this.pokemonRepository = pokemonRepository;
     }
 
-    public Optional<Pokemon> getPokemon(final Integer id) {
-        return pokemonRepository.findById(id);
-    }
-
     public Iterable<Pokemon> getPokemons() {
         return pokemonRepository.findAll();
     }
 
-    public void deletePokemon(final Integer id) {
+    public List<Object> getDetailedPokemons() {
+        return pokemonRepository.findDetailedPokemons();
+    }
+
+    public Optional<Pokemon> getPokemon(final Integer id) {
+        return pokemonRepository.findById(id);
+    }
+
+    public Object getDetailedPokemonByName(String pokemonName) {
+        return pokemonRepository.findDetailedPokemonByName(pokemonName);
+    }
+
+    public List<Object> getDetailedPokemonsByElement(String elementDesc) {
+        return pokemonRepository.findDetailedPokemonsByElement(elementDesc);
+    }
+
+    public void deletePokemonById(final Integer id) {
         pokemonRepository.deleteById(id);
-    }
-
-    public Object getPokemonInfoByName(String pokemonName) {
-        return pokemonRepository.findPokemonWithType(pokemonName);
-    }
-
-    public List<Object> getPokemonsWithTypes() {
-        return pokemonRepository.findAllPokemonsWithTypes();
     }
 }

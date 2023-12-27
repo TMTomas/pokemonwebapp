@@ -136,6 +136,7 @@ nav a:hover {
     background-color: #ff5942;
 }
 
+
 /* Estilo para a tabela de busca */
 table {
     border-collapse: collapse;
@@ -219,4 +220,24 @@ th,
 #back-button:hover {
     background-color: #af2b08;
     /* Cor de fundo ao passar o mouse (tom mais escuro de vermelho Pokémon) */
+}
+
+/* Estilo para o segundo formulário */
+#filter-form {
+    margin-top: 20px;
+    text-align: center;
+}
+
+/* Estilo para o select do segundo formulário */
+#pokemon-type {
+    width: 200px;
+    padding: 10px;
+    font-size: 16px;
+    border-radius: 5px;
+}
+
+/* Estilo para as opções do select do segundo formulário */
+#pokemon-type option {
+    background-color: #424242; /* Cor de fundo (preto) para opções do select */
+    color: #fff; /* Cor do texto (branco) para opções do select */
 }
