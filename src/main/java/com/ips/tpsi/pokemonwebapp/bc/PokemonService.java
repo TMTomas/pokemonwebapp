@@ -29,12 +29,19 @@ public class PokemonService {
         return pokemonRepository.findById(id);
     }
 
-    public Object getDetailedPokemonByName(String pokemonName) {
+    public Object getDetailedPokemon(String pokemonName) {
         return pokemonRepository.findDetailedPokemonByName(pokemonName);
+    }
+    public Object getDetailedPokemon(Integer idPokemon) {
+        return pokemonRepository.findDetailedPokemonByName(idPokemon);
     }
 
     public List<Object> getDetailedPokemonsByElement(String elementDesc) {
         return pokemonRepository.findDetailedPokemonsByElement(elementDesc);
+    }
+
+    public Pokemon savePokemon(Pokemon pokemon){
+        return pokemonRepository.save(pokemon);
     }
 
     public void deletePokemonById(final Integer id) {
