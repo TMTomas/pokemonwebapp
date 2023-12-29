@@ -1,12 +1,10 @@
 package com.ips.tpsi.pokemonwebapp.controller;
 
 import com.ips.tpsi.pokemonwebapp.bc.PokemonService;
+import com.ips.tpsi.pokemonwebapp.entity.Pokemon;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 
 @Controller
@@ -41,27 +39,10 @@ public class PokemonController {
         return mv;
     }
 
+    @PostMapping("/consulta/pokemons/create")
+    public Pokemon alterPokemon(@RequestBody Pokemon pokemon){
+        return pokemonBC.savePokemon(pokemon);
+    }
 
 
-
-
-//    @PostMapping("/pokemons/alter")
-//    public ModelAndView createPokemon() {
-//        ModelAndView mv = new ModelAndView("alterar.html");
-//        mv.addObject("pokemonsAlter", pokemonBC.getDetailedPokemons());
-//        return mv;
-//    }
-//    @PostMapping("/pokemons/alter")
-//    public ModelAndView alterPokemon(@RequestParam(name = "idPokemon", required = true) Integer idPokemon){
-//        ModelAndView mv = new ModelAndView("alterar.html");
-//        mv.addObject("pokemonAlter", pokemonBC.alterDetailedPokemon(idPokemon, pokemonName, total, hp, attack, defense, speed, speedAttack, speedDefense, generation, legendary));
-//        return mv;
-//    }
-//
-//    @PostMapping("/pokemons/alter")
-//    public ModelAndView alterPokemon(@RequestParam(name = "pokemonName", required = true) String pokemonName){
-//        ModelAndView mv = new ModelAndView("alterar.html");
-//        mv.addObject("pokemonAlter", pokemonBC.alterDetailedPokemon(idPokemon, pokemonName, total, hp, attack, defense, speed, speedAttack, speedDefense, generation, legendary));
-//        return mv;
-//    }
 }
