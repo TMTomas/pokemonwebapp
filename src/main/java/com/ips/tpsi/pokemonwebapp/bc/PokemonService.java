@@ -44,7 +44,7 @@ public class PokemonService {
         return pokemonRepository.save(pokemon);
     }
 
-    public void deletePokemonById(final Integer id) {
+    public void deletePokemon(final Integer id) {
         pokemonRepository.deleteById(id);
     }
 }
