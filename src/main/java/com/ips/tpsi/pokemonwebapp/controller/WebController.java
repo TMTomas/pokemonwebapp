@@ -2,7 +2,10 @@ package com.ips.tpsi.pokemonwebapp.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 import com.ips.tpsi.pokemonwebapp.bc.ElementService;
@@ -36,11 +39,11 @@ public class WebController {
 
     @GetMapping("/consulta")
     public ModelAndView getConsulta(@RequestParam(name = "pokemonName", required = false) String pokemonName,
-            @RequestParam(name = "elementDesc", required = false) String elementDesc) {
+                                    @RequestParam(name = "elementDesc", required = false) String elementDesc) {
         ModelAndView mv = new ModelAndView("consulta.html");
 
         if (pokemonName != null && !pokemonName.isEmpty()) {
-            mv.addObject("pokemonByName", pokemonBC.getDetailedPokemonByName(pokemonName));
+            mv.addObject("pokemonByName", pokemonBC.getDetailedPokemon(pokemonName));
         }
 
         if (elementDesc != null && !elementDesc.isEmpty()) {
@@ -65,4 +68,5 @@ public class WebController {
         ModelAndView mv = new ModelAndView("apagar.html");
         return mv;
     }
+
 }
