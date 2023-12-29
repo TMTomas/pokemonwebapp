@@ -40,9 +40,13 @@ public class PokemonController {
     }
 
     @PostMapping("/consulta/pokemons/create")
-    public Pokemon alterPokemon(@RequestBody Pokemon pokemon){
+    public Pokemon createPokemon(@RequestBody Pokemon pokemon){
         return pokemonBC.savePokemon(pokemon);
     }
 
+    @DeleteMapping("consulta/pokemons/{idPokemon}")
+    public void deletePokemon(@PathVariable("pokemon") Integer idPokemon){
+        pokemonBC.deletePokemon(idPokemon);
+    }
 
 }
