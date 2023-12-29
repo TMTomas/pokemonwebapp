@@ -29,6 +29,14 @@ public interface PokemonRepository
                         "WHERE p.pokemonName = :pokemonName")
         Object findDetailedPokemonByName(String pokemonName);
 
+        @Query("SELECT p, e1.elementDesc as type1, e2.elementDesc as type2 " +
+                "FROM Pokemon p " +
+                "INNER JOIN PokemonElement pe1 ON p.idPokemon = pe1.pokemonId AND pe1.elementNumber = 1 " +
+                "INNER JOIN Element e1 ON pe1.elementId = e1.idElement " +
+                "LEFT JOIN PokemonElement pe2 ON p.idPokemon = pe2.pokemonId AND pe2.elementNumber = 2 " +
+                "LEFT JOIN Element e2 ON pe2.elementId = e2.idElement " +
+                "WHERE p.idPokemon = :idPokemon")
+        Object findDetailedPokemonByName(Integer idPokemon);
 
         @Query("SELECT p, e1.elementDesc as type1, e2.elementDesc as type2 " +
                         "FROM Pokemon p " +
