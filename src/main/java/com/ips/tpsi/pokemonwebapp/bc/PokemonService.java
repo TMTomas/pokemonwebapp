@@ -4,6 +4,7 @@ import java.util.List;
 import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
 import com.ips.tpsi.pokemonwebapp.entity.Pokemon;
 import com.ips.tpsi.pokemonwebapp.repository.PokemonRepository;
 
@@ -25,26 +26,57 @@ public class PokemonService {
         return pokemonRepository.findDetailedPokemons();
     }
 
-    public Optional<Pokemon> getPokemon(final Integer id) {
+    public Optional<Pokemon> getPokemonById(final Integer id) {
         return pokemonRepository.findById(id);
     }
 
-    public Object getDetailedPokemon(String pokemonName) {
-        return pokemonRepository.findDetailedPokemonByName(pokemonName);
+    public Object getDetailedPokemonById(final Integer idPokemon) {
+        return pokemonRepository.findDetailedPokemonById(idPokemon);
     }
-    public Object getDetailedPokemon(Integer idPokemon) {
-        return pokemonRepository.findDetailedPokemonByName(idPokemon);
+
+    public Object getDetailedPokemonByName(String pokemonName) {
+        return pokemonRepository.findDetailedPokemonByName(pokemonName);
     }
 
     public List<Object> getDetailedPokemonsByElement(String elementDesc) {
         return pokemonRepository.findDetailedPokemonsByElement(elementDesc);
     }
 
-    public Pokemon savePokemon(Pokemon pokemon){
-        return pokemonRepository.save(pokemon);
+    public List<Object> getDetailedPokemonsByTotal(int total) {
+        return pokemonRepository.findDetailedPokemonsByTotal(total);
     }
 
-    public void deletePokemon(final Integer id) {
+    public List<Object> getDetailedPokemonsByHp(int hp) {
+        return pokemonRepository.findDetailedPokemonsByHp(hp);
+    }
+
+    public List<Object> getDetailedPokemonsByAttack(int attack) {
+        return pokemonRepository.findDetailedPokemonsByAttack(attack);
+    }
+
+    public List<Object> getDetailedPokemonsByDefense(int defense) {
+        return pokemonRepository.findDetailedPokemonsByDefense(defense);
+    }
+
+    public List<Object> getDetailedPokemonsBySpeed(int speed) {
+        return pokemonRepository.findDetailedPokemonsBySpeed(speed);
+    }
+    public List<Object> getDetailedPokemonsBySpeedAttack(int speedAttack) {
+        return pokemonRepository.findDetailedPokemonsBySpeedAttack(speedAttack);
+    }
+    public List<Object> getDetailedPokemonsBySpeedDefense(int speepDefense) {
+        return pokemonRepository.findDetailedPokemonsBySpeedDefense(speepDefense);
+    }
+
+    public List<Object> getDetailedPokemonsByGeneration(int generation) {
+        return pokemonRepository.findDetailedPokemonsByGeneration(generation);
+    }
+
+    public List<Object> getDetailedPokemonsByLegendary(String legendary) {
+        return pokemonRepository.findDetailedPokemonsByLegendary(legendary);
+    }
+
+    public void deletePokemonById(final Integer id) {
         pokemonRepository.deleteById(id);
     }
 }

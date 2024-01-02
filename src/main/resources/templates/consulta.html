@@ -22,65 +22,107 @@
     </nav>
 
     <div class="container-black">
-            <form id="search-form" th:action="@{/consulta}" method="get" class="search-container">
-                <input type="text" id="pokemon-name" name="pokemonName" placeholder="Consultar Pokémon"
-                    class="search-input" />
-                <button type="submit" class="search-button">Buscar</button>
-            </form>
-            <form id="filter-form" action="/consulta" method="get" class="filter-container">
-                <label for="pokemon-type">Escolher Tipo:</label>
-                <select id="pokemon-type" name="elementDesc" class="filter-input" onchange="this.form.submit()">
-                    <option></option>
-                    <option th:each="type : ${types}" th:unless="${#strings.isEmpty(type.elementDesc)}"
-                        th:value="${type.elementDesc}" th:text="${type.elementDesc}"
-                        th:selected="${type.elementDesc eq selectedType}"></option>
-                </select>
-            </form>
+        <form id="search-form" th:action="@{/consulta}" method="get" class="search-container">
+            <label for="search-type">Escolher Tipo de Pesquisa:</label>
+            <select id="search-type" name="searchType" class="filter-input">
+                <option value="name" th:selected="${searchType == 'name'}">Nome</option>
+                <option value="hp" th:selected="${searchType == 'hp'}">HP</option>
+                <option value="total" th:selected="${searchType == 'total'}">Total</option>
+                <option value="attack" th:selected="${searchType == 'attack'}">Attack</option>
+                <option value="defense" th:selected="${searchType == 'defense'}">Defense</option>
+                <option value="speed" th:selected="${searchType == 'speed'}">Speed</option>
+                <option value="speedAttack" th:selected="${searchType == 'speedAttack'}">Speed Attack</option>
+                <option value="speedDefense" th:selected="${searchType == 'speedDefense'}">Speed Defense</option>
+                <option value="generation" th:selected="${searchType == 'generation'}">Generation</option>
+                <option value="legendary" th:selected="${searchType == 'legendary'}">Legendary</option>
+            </select>
+
+            <input type="text" id="pokemon-value" name="pokemonValue" placeholder="Valor da Pesquisa"
+                class="search-input" required />
+            <button type="submit" class="search-button">Buscar</button>
+        </form>
+
+        <form id="filter-form" action="/consulta" method="get" class="filter-container">
+            <label for="pokemon-type">Escolher Tipo:</label>
+            <select id="pokemon-type" name="elementDesc" class="filter-input" onchange="this.form.submit()">
+                <option></option>
+                <option th:each="type : ${types}" th:unless="${#strings.isEmpty(type.elementDesc)}"
+                    th:value="${type.elementDesc}" th:text="${type.elementDesc}"
+                    th:selected="${type.elementDesc eq selectedType}"></option>
+            </select>
+        </form>
     </div>
 
-    <div class="pokemon-info" th:if="${pokemonByName!= null}">
-        <h2>Resultado da busca:</h2>
-        <table>
-            <thead>
-                <tr>
-                    <th>ID</th>
-                    <th>Nome</th>
-                    <th>Total</th>
-                    <th>HP</th>
-                    <th>Attack</th>
-                    <th>Defense</th>
-                    <th>Speed</th>
-                    <th>Speed Attack</th>
-                    <th>Speed Defense</th>
-                    <th>Generation</th>
-                    <th>Legendary</th>
-                    <th>Type 1</th>
-                    <th>Type 2</th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr>
-                    <td th:text="${pokemonByName[0].idPokemon}"></td>
-                    <td th:text="${pokemonByName[0].pokemonName}"></td>
-                    <td th:text="${pokemonByName[0].total}"></td>
-                    <td th:text="${pokemonByName[0].hp}"></td>
-                    <td th:text="${pokemonByName[0].attack}"></td>
-                    <td th:text="${pokemonByName[0].defense}"></td>
-                    <td th:text="${pokemonByName[0].speed}"></td>
-                    <td th:text="${pokemonByName[0].speedAttack}"></td>
-                    <td th:text="${pokemonByName[0].speedDefense}"></td>
-                    <td th:text="${pokemonByName[0].generation}"></td>
-                    <td th:text="${pokemonByName[0].legendary}"></td>
-                    <td th:text="${pokemonByName[1]}"></td>
-                    <td th:text="${pokemonByName[2]}"></td>
-                </tr>
-            </tbody>
-        </table>
-        <button id="back-button" type="button" onclick="window.location.href='/consulta'">Voltar à lista</button>
-    </div>
+    <th:block th:if="${!#lists.isEmpty(pokemonResults)}">
+        <div class="pokemon-info">
+            <h2>Resultado da busca:</h2>
+            <table>
+                <thead>
+                    <tr>
+                        <th>ID</th>
+                        <th>Nome</th>
+                        <th>Total</th>
+                        <th>HP</th>
+                        <th>Attack</th>
+                        <th>Defense</th>
+                        <th>Speed</th>
+                        <th>Speed Attack</th>
+                        <th>Speed Defense</th>
+                        <th>Generation</th>
+                        <th>Legendary</th>
+                        <th>Type 1</th>
+                        <th>Type 2</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr th:if="${searchType != 'name'}" th:each="pokemon : ${pokemonResults}">
+                        <td th:text="${pokemon[0].idPokemon}"></td>
+                        <td th:text="${pokemon[0].pokemonName}"></td>
+                        <td th:text="${pokemon[0].total}"></td>
+                        <td th:text="${pokemon[0].hp}"></td>
+                        <td th:text="${pokemon[0].attack}"></td>
+                        <td th:text="${pokemon[0].defense}"></td>
+                        <td th:text="${pokemon[0].speed}"></td>
+                        <td th:text="${pokemon[0].speedAttack}"></td>
+                        <td th:text="${pokemon[0].speedDefense}"></td>
+                        <td th:text="${pokemon[0].generation}"></td>
+                        <td th:text="${pokemon[0].legendary}"></td>
+                        <td th:text="${pokemon[1]}"></td>
+                        <td th:text="${pokemon[2]}"></td>
+                    </tr>
 
+                    <tr th:if="${searchType == 'name'}">
+                        <td th:text="${pokemonResults[0].idPokemon}"></td>
+                        <td th:text="${pokemonResults[0].pokemonName}"></td>
+                        <td th:text="${pokemonResults[0].total}"></td>
+                        <td th:text="${pokemonResults[0].hp}"></td>
+                        <td th:text="${pokemonResults[0].attack}"></td>
+                        <td th:text="${pokemonResults[0].defense}"></td>
+                        <td th:text="${pokemonResults[0].speed}"></td>
+                        <td th:text="${pokemonResults[0].speedAttack}"></td>
+                        <td th:text="${pokemonResults[0].speedDefense}"></td>
+                        <td th:text="${pokemonResults[0].generation}"></td>
+                        <td th:text="${pokemonResults[0].legendary}"></td>
+                        <td th:text="${pokemonResults[1]}"></td>
+                        <td th:text="${pokemonResults[2]}"></td>
+                    </tr>
+                </tbody>
+            </table>
 
-    <table th:if="${pokemonByName == null and pokemonsByElement != null}">
+            <button id="back-button" type="button" onclick="window.location.href='/consulta'">Voltar à lista</button>
+
+        </div>
+    </th:block>
+
+    <th:block
+        th:if="${invalidInput}">
+        <div class="pokemon-info">
+            <h2>Nenhum resultado encontrado.</h2>
+            <button id="back-button" type="button" onclick="window.location.href='/consulta'">Voltar à lista</button>
+        </div>
+    </th:block>
+
+    <table th:if="${pokemonResults == null and pokemonsByElement != null}">
         <thead>
             <tr>
                 <th>ID</th>
@@ -117,7 +159,7 @@
         </tbody>
     </table>
 
-    <table th:if="${pokemonByName == null and pokemonsByElement == null}">
+    <table th:if="${#lists.isEmpty(pokemonResults) and #lists.isEmpty(pokemonsByElement) and invalidInput!=true}">
         <thead>
             <tr>
                 <th>ID</th>

@@ -20,6 +20,36 @@
         <a href="/alterar">Alterar</a>
         <a href="/apagar">Apagar</a>
     </nav>
+
+    <div class="container-black">
+        <form id="delete-form" th:action="@{/apagar}" method="post" class="search-container">
+            <label for="delete-type">Escolher Tipo de Exclusão:</label>
+            <select id="search-type" name="deleteType" class="filter-input">
+                <option value="id" th:selected="${deleteType == 'id'}">ID do Pokémon</option>
+                <option value="name" th:selected="${deleteType == 'name'}">Nome do Pokémon</option>
+                <option value="hp" th:selected="${deleteType == 'hp'}">HP</option>
+                <option value="total" th:selected="${deleteType == 'total'}">Total</option>
+                <option value="attack" th:selected="${deleteType == 'attack'}">Attack</option>
+                <option value="defense" th:selected="${deleteType == 'defense'}">Defense</option>
+                <option value="speed" th:selected="${deleteType == 'speed'}">Speed</option>
+                <option value="speedAttack" th:selected="${deleteType == 'speedAttack'}">Speed Attack</option>
+                <option value="speedDefense" th:selected="${deleteType == 'speedDefense'}">Speed Defense</option>
+                <option value="generation" th:selected="${deleteType == 'generation'}">Generation</option>
+                <option value="legendary" th:selected="${deleteType == 'legendary'}">Legendary</option>
+            </select>
+            <input type="text" id="pokemon-criteria" name="pokemonCriteria" placeholder="Valor para Exclusão"
+                class="search-input" required />
+
+            <button type="submit" class="delete-button">Excluir Pokémon(s)</button>
+        </form>
+    </div>
+
+    <th:block th:if="${invalidInput}">
+        <div class="pokemon-info">
+            <h2>Nenhum Pokémon selecionado para excluir.</h2>
+            <button id="back-button" type="button" onclick="window.location.href='/consulta'">Voltar à lista</button>
+        </div>
+    </th:block>
 </body>
 
 </html>

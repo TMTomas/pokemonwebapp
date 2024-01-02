@@ -241,3 +241,20 @@ th,
     background-color: #424242; /* Cor de fundo (preto) para opções do select */
     color: #fff; /* Cor do texto (branco) para opções do select */
 }
+
+#search-type {
+    width: 200px;
+    padding: 10px;
+    font-size: 16px;
+    border-radius: 5px;
+}
+
+/* Estilo para as opções do select do segundo formulário */
+#search-type option {
+    background-color: #424242; /* Cor de fundo (preto) para opções do select */
+    color: #fff; /* Cor do texto (branco) para opções do select */
+}
+
+input#pokemon-id{
+    border-radius: unset;
+}

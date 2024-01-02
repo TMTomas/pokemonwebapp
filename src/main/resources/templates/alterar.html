@@ -20,6 +20,32 @@
         <a href="/alterar">Alterar</a>
         <a href="/apagar">Apagar</a>
     </nav>
+
+    <div class="container-black">
+        <form id="update-form" th:action="@{/alterar}" method="post" class="update-container">
+            <label for="pokemon-id">Selecionar ID do Pokémon:</label>
+            <input type="number" id="pokemon-id" name="pokemonId" class="search-input" required />
+
+            <label for="attribute">Selecionar Atributo a ser Alterado:</label>
+            <select id="search-type" name="attribute">
+                <option value="pokemonName">Nome</option>
+                <option value="total">Total</option>
+                <option value="hp">HP</option>
+                <option value="attack">Attack</option>
+                <option value="defense">Defense</option>
+                <option value="speed">Speed</option>
+                <option value="speedAttack">Speed Attack</option>
+                <option value="speedDefense">Speed Defense</option>
+                <option value="generation">Generation</option>
+                <option value="legendary">Legendary</option>
+            </select>
+
+            <label for="new-value">Inserir Novo Valor:</label>
+            <input type="text" id="new-value" name="newValue" class="search-input" required />
+
+            <button type="submit" class="search-button">Atualizar</button>
+        </form>
+    </div>
 </body>
 
 </html>
