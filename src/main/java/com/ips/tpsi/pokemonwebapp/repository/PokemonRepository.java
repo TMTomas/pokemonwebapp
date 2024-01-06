@@ -5,13 +5,17 @@ import com.ips.tpsi.pokemonwebapp.entity.Pokemon;
 import java.util.List;
 
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
+import org.springframework.transaction.annotation.Transactional;
 
 @Repository
 public interface PokemonRepository
                 extends JpaRepository<Pokemon, Integer> {
+
+        // CONSULTAR
 
         @Query("SELECT p, e1.elementDesc as type1, e2.elementDesc as type2 " +
                         "FROM Pokemon p " +
@@ -37,7 +41,7 @@ public interface PokemonRepository
                         "LEFT JOIN PokemonElement pe2 ON p.idPokemon = pe2.pokemonId AND pe2.elementNumber = 2 " +
                         "LEFT JOIN Element e2 ON pe2.elementId = e2.idElement " +
                         "WHERE p.pokemonName = :pokemonName")
-         Object findDetailedPokemonByName(@Param("pokemonName") String pokemonName);
+        Object findDetailedPokemonByName(@Param("pokemonName") String pokemonName);
 
         @Query("SELECT p, e1.elementDesc as type1, e2.elementDesc as type2 " +
                         "FROM Pokemon p " +
@@ -128,5 +132,69 @@ public interface PokemonRepository
                         "LEFT JOIN Element e2 ON pe2.elementId = e2.idElement " +
                         "WHERE p.legendary = :legendary")
         List<Object> findDetailedPokemonsByLegendary(String legendary);
+
+        // APAGAR
+
+        @Transactional
+        @Modifying
+        @Query("DELETE FROM Pokemon p WHERE p.idPokemon = :id")
+        void deleteById(@Param("id") Integer id);
+
+        @Transactional
+        @Modifying
+        @Query("DELETE FROM Pokemon p WHERE p.pokemonName = :name")
+        void deleteByName(@Param("name") String name);
+
+        @Transactional
+        @Modifying
+        @Query("DELETE FROM Pokemon p WHERE p.total = :total")
+        void deleteByTotal(@Param("total") Integer total);
+
+        @Transactional
+        @Modifying
+        @Query("DELETE FROM Pokemon p WHERE p.hp = :hp")
+        void deleteByHp(@Param("hp") Integer hp);
+
+        @Transactional
+        @Modifying
+        @Query("DELETE FROM Pokemon p WHERE p.attack = :attack")
+        void deleteByAttack(@Param("attack") Integer attack);
+
+        @Transactional
+        @Modifying
+        @Query("DELETE FROM Pokemon p WHERE p.defense = :defense")
+        void deleteByDefense(@Param("defense") Integer defense);
+
+        @Transactional
+        @Modifying
+        @Query("DELETE FROM Pokemon p WHERE p.speed = :speed")
+        void deleteBySpeed(@Param("speed") Integer speed);
+
+        @Transactional
+        @Modifying
+        @Query("DELETE FROM Pokemon p WHERE p.speedAttack = :speedAttack")
+        void deleteBySpeedAttack(@Param("speedAttack") Integer speedAttack);
+
+        @Transactional
+        @Modifying
+        @Query("DELETE FROM Pokemon p WHERE p.speedDefense = :speedDefense")
+        void deleteBySpeedDefense(@Param("speedDefense") Integer speedDefense);
+
+        @Transactional
+        @Modifying
+        @Query("DELETE FROM Pokemon p WHERE p.generation = :generation")
+        void deleteByGeneration(@Param("generation") Integer generation);
+
+        @Transactional
+        @Modifying
+        @Query("DELETE FROM Pokemon p WHERE p.legendary = :legendary")
+        void deleteByLegendary(@Param("legendary") String legendary);
+
+        @Transactional
+        @Modifying
+        @Query("DELETE FROM Pokemon p WHERE p.idPokemon IN (" +
+                        "SELECT pe.pokemonId FROM PokemonElement pe WHERE pe.elementId IN (" +
+                        "SELECT e.idElement FROM Element e WHERE e.elementDesc = :elementDesc))")
+        void deleteByElement(@Param("elementDesc") String elementDesc);
 
 }

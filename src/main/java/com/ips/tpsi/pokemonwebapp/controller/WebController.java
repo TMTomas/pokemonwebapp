@@ -1,8 +1,10 @@
 package com.ips.tpsi.pokemonwebapp.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 import com.ips.tpsi.pokemonwebapp.bc.ElementService;
@@ -41,7 +43,9 @@ public class WebController {
             @RequestParam(name = "elementDesc", required = false) String elementDesc) {
         ModelAndView mv = new ModelAndView("consulta.html");
         try {
-            if ("name".equals(searchType) && pokemonValue != null && !pokemonValue.isEmpty()) {
+            if ("id".equals(searchType) && pokemonValue != null && !pokemonValue.isEmpty()) {
+                mv.addObject("pokemonResults", pokemonBC.getDetailedPokemonById(Integer.parseInt(pokemonValue)));
+            } else if ("name".equals(searchType) && pokemonValue != null && !pokemonValue.isEmpty()) {
                 mv.addObject("pokemonResults", pokemonBC.getDetailedPokemonByName(pokemonValue));
             } else if ("hp".equals(searchType) && pokemonValue != null && !pokemonValue.isEmpty()) {
                 mv.addObject("pokemonResults", pokemonBC.getDetailedPokemonsByHp(Integer.parseInt(pokemonValue)));
@@ -54,11 +58,14 @@ public class WebController {
             } else if ("speed".equals(searchType) && pokemonValue != null && !pokemonValue.isEmpty()) {
                 mv.addObject("pokemonResults", pokemonBC.getDetailedPokemonsBySpeed(Integer.parseInt(pokemonValue)));
             } else if ("speedAttack".equals(searchType) && pokemonValue != null && !pokemonValue.isEmpty()) {
-                mv.addObject("pokemonResults", pokemonBC.getDetailedPokemonsBySpeedAttack(Integer.parseInt(pokemonValue)));
+                mv.addObject("pokemonResults",
+                        pokemonBC.getDetailedPokemonsBySpeedAttack(Integer.parseInt(pokemonValue)));
             } else if ("speedDefense".equals(searchType) && pokemonValue != null && !pokemonValue.isEmpty()) {
-                mv.addObject("pokemonResults", pokemonBC.getDetailedPokemonsBySpeedDefense(Integer.parseInt(pokemonValue)));
+                mv.addObject("pokemonResults",
+                        pokemonBC.getDetailedPokemonsBySpeedDefense(Integer.parseInt(pokemonValue)));
             } else if ("generation".equals(searchType) && pokemonValue != null && !pokemonValue.isEmpty()) {
-                mv.addObject("pokemonResults", pokemonBC.getDetailedPokemonsByGeneration(Integer.parseInt(pokemonValue)));
+                mv.addObject("pokemonResults",
+                        pokemonBC.getDetailedPokemonsByGeneration(Integer.parseInt(pokemonValue)));
             } else if ("legendary".equals(searchType) && pokemonValue != null && !pokemonValue.isEmpty()) {
                 mv.addObject("pokemonResults", pokemonBC.getDetailedPokemonsByLegendary(pokemonValue));
             }
@@ -87,6 +94,64 @@ public class WebController {
     @GetMapping("/apagar")
     public ModelAndView getApagar() {
         ModelAndView mv = new ModelAndView("apagar.html");
+        return mv;
+    }
+
+    @PostMapping("/apagar")
+    public ModelAndView postApagar(
+            @RequestParam(name = "deleteType") String deleteType,
+            @RequestParam(name = "pokemonCriteria") String pokemonCriteria) {
+        ModelAndView mv = new ModelAndView("apagar.html");
+        try {
+            switch (deleteType) {
+                case "id":
+                    pokemonBC.deletePokemonById(Integer.parseInt(pokemonCriteria));
+                    break;
+                case "name":
+                    pokemonBC.deletePokemonByName(pokemonCriteria);
+                    break;
+                case "element":
+                    pokemonBC.deletePokemonByElement(pokemonCriteria);
+                    break;
+                case "total":
+                    pokemonBC.deletePokemonByTotal(Integer.parseInt(pokemonCriteria));
+                    break;
+                case "hp":
+                    pokemonBC.deletePokemonByHp(Integer.parseInt(pokemonCriteria));
+                    break;
+                case "attack":
+                    pokemonBC.deletePokemonByAttack(Integer.parseInt(pokemonCriteria));
+                    break;
+                case "defense":
+                    pokemonBC.deletePokemonByDefense(Integer.parseInt(pokemonCriteria));
+                    break;
+                case "speed":
+                    pokemonBC.deletePokemonBySpeed(Integer.parseInt(pokemonCriteria));
+                    break;
+                case "speedAttack":
+                    pokemonBC.deletePokemonBySpeedAttack(Integer.parseInt(pokemonCriteria));
+                    break;
+                case "speedDefense":
+                    pokemonBC.deletePokemonBySpeedDefense(Integer.parseInt(pokemonCriteria));
+                    break;
+                case "generation":
+                    pokemonBC.deletePokemonByGeneration(Integer.parseInt(pokemonCriteria));
+                    break;
+                case "legendary":
+                    pokemonBC.deletePokemonByLegendary(pokemonCriteria);
+                    break;
+                default:
+                    mv.addObject("errorMessage", "Tipo de exclusão não suportado.");
+                    break;
+            }
+            mv.addObject("successMessage", "Pokémon(s) excluído(s) com sucesso.");
+        } catch (NumberFormatException e) {
+            mv.addObject("errorMessage",
+                    "Erro ao converter o critério para exclusão. Certifique-se de inserir um valor válido.");
+        }
+        mv.addObject("deleteType", deleteType);
+        mv.addObject("pokemonCriteria", pokemonCriteria);
+        mv.addObject("pokemons", pokemonBC.getDetailedPokemons());
         return mv;
     }
 }

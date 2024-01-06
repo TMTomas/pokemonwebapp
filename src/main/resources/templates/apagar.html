@@ -27,6 +27,7 @@
             <select id="search-type" name="deleteType" class="filter-input">
                 <option value="id" th:selected="${deleteType == 'id'}">ID do Pokémon</option>
                 <option value="name" th:selected="${deleteType == 'name'}">Nome do Pokémon</option>
+                <option value="element" th:selected="${deleteType == 'element'}">Elemento</option>
                 <option value="hp" th:selected="${deleteType == 'hp'}">HP</option>
                 <option value="total" th:selected="${deleteType == 'total'}">Total</option>
                 <option value="attack" th:selected="${deleteType == 'attack'}">Attack</option>
@@ -40,16 +41,52 @@
             <input type="text" id="pokemon-criteria" name="pokemonCriteria" placeholder="Valor para Exclusão"
                 class="search-input" required />
 
-            <button type="submit" class="delete-button">Excluir Pokémon(s)</button>
+            <button type="submit" class="search-button">Excluir Pokémon(s)</button>
         </form>
+
+        <th:block th:if="${errorMessage}">
+            <div class="error-message">
+                <p th:text="${errorMessage}"></p>
+            </div>
+        </th:block>
     </div>
 
-    <th:block th:if="${invalidInput}">
-        <div class="pokemon-info">
-            <h2>Nenhum Pokémon selecionado para excluir.</h2>
-            <button id="back-button" type="button" onclick="window.location.href='/consulta'">Voltar à lista</button>
-        </div>
-    </th:block>
+        <table th:if="${#lists.isEmpty(pokemonResults) and #lists.isEmpty(pokemonsByElement) and invalidInput!=true}">
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Nome</th>
+                    <th>Total</th>
+                    <th>HP</th>
+                    <th>Attack</th>
+                    <th>Defense</th>
+                    <th>Speed</th>
+                    <th>Speed Attack</th>
+                    <th>Speed Defense</th>
+                    <th>Generation</th>
+                    <th>Legendary</th>
+                    <th>Type 1</th>
+                    <th>Type 2</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr th:each="pokemon : ${pokemons}">
+                    <td th:text="${pokemon[0].idPokemon}"></td>
+                    <td th:text="${pokemon[0].pokemonName}"></td>
+                    <td th:text="${pokemon[0].total}"></td>
+                    <td th:text="${pokemon[0].hp}"></td>
+                    <td th:text="${pokemon[0].attack}"></td>
+                    <td th:text="${pokemon[0].defense}"></td>
+                    <td th:text="${pokemon[0].speed}"></td>
+                    <td th:text="${pokemon[0].speedAttack}"></td>
+                    <td th:text="${pokemon[0].speedDefense}"></td>
+                    <td th:text="${pokemon[0].generation}"></td>
+                    <td th:text="${pokemon[0].legendary}"></td>
+                    <td th:text="${pokemon[1]}"></td>
+                    <td th:text="${pokemon[2]}"></td>
+                </tr>
+            </tbody>
+        </table>
 </body>
 
 </html>

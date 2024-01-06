@@ -25,6 +25,7 @@
         <form id="search-form" th:action="@{/consulta}" method="get" class="search-container">
             <label for="search-type">Escolher Tipo de Pesquisa:</label>
             <select id="search-type" name="searchType" class="filter-input">
+                <option value="id" th:selected="${searchType == 'id'}">ID</option>
                 <option value="name" th:selected="${searchType == 'name'}">Nome</option>
                 <option value="hp" th:selected="${searchType == 'hp'}">HP</option>
                 <option value="total" th:selected="${searchType == 'total'}">Total</option>
@@ -75,7 +76,7 @@
                     </tr>
                 </thead>
                 <tbody>
-                    <tr th:if="${searchType != 'name'}" th:each="pokemon : ${pokemonResults}">
+                    <tr th:if="${searchType != 'name' and searchType != 'id'}" th:each="pokemon : ${pokemonResults}">
                         <td th:text="${pokemon[0].idPokemon}"></td>
                         <td th:text="${pokemon[0].pokemonName}"></td>
                         <td th:text="${pokemon[0].total}"></td>
@@ -91,7 +92,7 @@
                         <td th:text="${pokemon[2]}"></td>
                     </tr>
 
-                    <tr th:if="${searchType == 'name'}">
+                    <tr th:if="${searchType == 'name' OR searchType == 'id'}">
                         <td th:text="${pokemonResults[0].idPokemon}"></td>
                         <td th:text="${pokemonResults[0].pokemonName}"></td>
                         <td th:text="${pokemonResults[0].total}"></td>
