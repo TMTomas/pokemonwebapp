@@ -136,7 +136,7 @@ public class WebController {
             }
             mv.addObject("successMessage", "Pokémon(s) alterados(s) com sucesso.");
         } catch (NumberFormatException e) {
-            mv.addObject("invalidInput",
+            mv.addObject("errorMessage",
                     "Erro ao converter o critério para alteração. Certifique-se de inserir um valor válido.");
         }
         mv.addObject("attribute", attribute);
@@ -201,7 +201,7 @@ public class WebController {
             }
             mv.addObject("successMessage", "Pokémon(s) apagados(s) com sucesso.");
         } catch (NumberFormatException e) {
-            mv.addObject("invalidInput",
+            mv.addObject("errorMessage",
                     "Erro ao converter o critério para exclusão. Certifique-se de inserir um valor válido.");
         }
         mv.addObject("deleteType", deleteType);

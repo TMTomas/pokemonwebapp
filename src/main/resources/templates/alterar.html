@@ -45,16 +45,17 @@
 
             <button type="submit" class="search-button">Atualizar</button>
         </form>
-        <th:block th:if="${invalidInput}">
+        <th:block th:if="${errorMessage}">
             <div class="error-message">
-                <p th:text="${invalidInput}"></p>
+                <p th:text="${errorMessage}"></p>
             </div>
         </th:block>
     </div>
-        <div class="pokemon-info" th:if="${!invalidInput}">
-            <h2 th:text="${successMessage}"></h2>
-            <table>
-                <thead>
+
+    <div class="pokemon-info" th:if="${errorMessage!=true}">
+        <h2 th:text="${successMessage}"></h2>
+        <table>
+            <thead>
                 <tr>
                     <th>ID</th>
                     <th>Nome</th>
@@ -70,8 +71,8 @@
                     <th>Type 1</th>
                     <th>Type 2</th>
                 </tr>
-                </thead>
-                <tbody>
+            </thead>
+            <tbody>
                 <tr th:each="pokemon : ${pokemons}">
                     <td th:text="${pokemon[0].idPokemon}"></td>
                     <td th:text="${pokemon[0].pokemonName}"></td>
@@ -87,9 +88,9 @@
                     <td th:text="${pokemon[1]}"></td>
                     <td th:text="${pokemon[2]}"></td>
                 </tr>
-                </tbody>
-            </table>
-        </div>
+            </tbody>
+        </table>
+    </div>
 </body>
 
 </html>

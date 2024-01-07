@@ -43,53 +43,53 @@
 
             <button type="submit" class="search-button">Excluir Pokémon(s)</button>
         </form>
-        <th:block th:if="${invalidInput}">
+
+        <th:block th:if="${errorMessage}">
             <div class="error-message">
-                <p th:text="${invalidInput}"></p>
+                <p th:text="${errorMessage}"></p>
             </div>
         </th:block>
     </div>
 
-        <div class="pokemon-info" th:if="${!invalidInput}">
-
-            <h2 th:text="${successMessage}"></h2>
-            <table>
-                <thead>
-                    <tr>
-                        <th>ID</th>
-                        <th>Nome</th>
-                        <th>Total</th>
-                        <th>HP</th>
-                        <th>Attack</th>
-                        <th>Defense</th>
-                        <th>Speed</th>
-                        <th>Speed Attack</th>
-                        <th>Speed Defense</th>
-                        <th>Generation</th>
-                        <th>Legendary</th>
-                        <th>Type 1</th>
-                        <th>Type 2</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr th:each="pokemon : ${pokemons}">
-                        <td th:text="${pokemon[0].idPokemon}"></td>
-                        <td th:text="${pokemon[0].pokemonName}"></td>
-                        <td th:text="${pokemon[0].total}"></td>
-                        <td th:text="${pokemon[0].hp}"></td>
-                        <td th:text="${pokemon[0].attack}"></td>
-                        <td th:text="${pokemon[0].defense}"></td>
-                        <td th:text="${pokemon[0].speed}"></td>
-                        <td th:text="${pokemon[0].speedAttack}"></td>
-                        <td th:text="${pokemon[0].speedDefense}"></td>
-                        <td th:text="${pokemon[0].generation}"></td>
-                        <td th:text="${pokemon[0].legendary}"></td>
-                        <td th:text="${pokemon[1]}"></td>
-                        <td th:text="${pokemon[2]}"></td>
-                    </tr>
-                </tbody>
-            </table>
-        </div>
+    <div class="pokemon-info" th:if="${errorMessage!=true}">
+        <h2 th:text="${successMessage}"></h2>
+        <table>
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Nome</th>
+                    <th>Total</th>
+                    <th>HP</th>
+                    <th>Attack</th>
+                    <th>Defense</th>
+                    <th>Speed</th>
+                    <th>Speed Attack</th>
+                    <th>Speed Defense</th>
+                    <th>Generation</th>
+                    <th>Legendary</th>
+                    <th>Type 1</th>
+                    <th>Type 2</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr th:each="pokemon : ${pokemons}">
+                    <td th:text="${pokemon[0].idPokemon}"></td>
+                    <td th:text="${pokemon[0].pokemonName}"></td>
+                    <td th:text="${pokemon[0].total}"></td>
+                    <td th:text="${pokemon[0].hp}"></td>
+                    <td th:text="${pokemon[0].attack}"></td>
+                    <td th:text="${pokemon[0].defense}"></td>
+                    <td th:text="${pokemon[0].speed}"></td>
+                    <td th:text="${pokemon[0].speedAttack}"></td>
+                    <td th:text="${pokemon[0].speedDefense}"></td>
+                    <td th:text="${pokemon[0].generation}"></td>
+                    <td th:text="${pokemon[0].legendary}"></td>
+                    <td th:text="${pokemon[1]}"></td>
+                    <td th:text="${pokemon[2]}"></td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
 </body>
 
 </html>
