@@ -24,7 +24,7 @@
     <div class="container-black">
         <form id="update-form" th:action="@{/alterar}" method="post" class="update-container">
             <label for="pokemon-id">Selecionar ID do Pokémon:</label>
-            <input type="number" id="pokemon-id" name="pokemonId" class="search-input" required />
+            <input type="number" id="pokemon-id" name="pokemonId" class="search-input" th:value="${pokemonId}" />
 
             <label for="attribute">Selecionar Atributo a ser Alterado:</label>
             <select id="search-type" name="attribute">
@@ -38,6 +38,8 @@
                 <option value="speedDefense" th:selected="${attribute == 'speedDefense'}">Speed Defense</option>
                 <option value="generation" th:selected="${attribute == 'generation'}">Generation</option>
                 <option value="legendary" th:selected="${attribute == 'legendary'}">Legendary</option>
+                <option value="element1" th:selected="${attribute == 'element1'}">Type 1</option>
+                <option value="element2" th:selected="${attribute == 'element2'}">Type 2</option>
             </select>
 
             <label for="new-value">Inserir Novo Valor:</label>
@@ -50,6 +52,7 @@
                 <p th:text="${errorMessage}"></p>
             </div>
         </th:block>
+
     </div>
 
     <div class="pokemon-info" th:if="${errorMessage!=true}">

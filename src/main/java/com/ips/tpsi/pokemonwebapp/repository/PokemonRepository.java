@@ -22,7 +22,7 @@ public interface PokemonRepository
                         "INNER JOIN PokemonElement pe1 ON p.idPokemon = pe1.pokemonId AND pe1.elementNumber = 1 " +
                         "INNER JOIN Element e1 ON pe1.elementId = e1.idElement " +
                         "LEFT JOIN PokemonElement pe2 ON p.idPokemon = pe2.pokemonId AND pe2.elementNumber = 2 " +
-                        "LEFT JOIN Element e2 ON pe2.elementId = e2.idElement")
+                        "LEFT JOIN Element e2 ON pe2.elementId = e2.idElement ORDER BY p.idPokemon")
         List<Object> findDetailedPokemons();
 
         @Query("SELECT p, e1.elementDesc as type1, e2.elementDesc as type2 " +
@@ -31,7 +31,7 @@ public interface PokemonRepository
                         "INNER JOIN Element e1 ON pe1.elementId = e1.idElement " +
                         "LEFT JOIN PokemonElement pe2 ON p.idPokemon = pe2.pokemonId AND pe2.elementNumber = 2 " +
                         "LEFT JOIN Element e2 ON pe2.elementId = e2.idElement " +
-                        "WHERE p.idPokemon = :idPokemon")
+                        "WHERE p.idPokemon = :idPokemon ORDER BY p.idPokemon")
         Object findDetailedPokemonById(final Integer idPokemon);
 
         @Query("SELECT p, e1.elementDesc as type1, e2.elementDesc as type2 " +
@@ -40,7 +40,7 @@ public interface PokemonRepository
                         "INNER JOIN Element e1 ON pe1.elementId = e1.idElement " +
                         "LEFT JOIN PokemonElement pe2 ON p.idPokemon = pe2.pokemonId AND pe2.elementNumber = 2 " +
                         "LEFT JOIN Element e2 ON pe2.elementId = e2.idElement " +
-                        "WHERE p.pokemonName = :pokemonName")
+                        "WHERE p.pokemonName = :pokemonName ORDER BY p.idPokemon")
         Object findDetailedPokemonByName(@Param("pokemonName") String pokemonName);
 
         @Query("SELECT p, e1.elementDesc as type1, e2.elementDesc as type2 " +
@@ -49,7 +49,7 @@ public interface PokemonRepository
                         "INNER JOIN Element e1 ON pe1.elementId = e1.idElement " +
                         "LEFT JOIN PokemonElement pe2 ON p.idPokemon = pe2.pokemonId AND pe2.elementNumber = 2 " +
                         "LEFT JOIN Element e2 ON pe2.elementId = e2.idElement " +
-                        "WHERE e1.elementDesc = :elementDesc OR e2.elementDesc = :elementDesc")
+                        "WHERE e1.elementDesc = :elementDesc OR e2.elementDesc = :elementDesc ORDER BY p.idPokemon")
         List<Object> findDetailedPokemonsByElement(String elementDesc);
 
         @Query("SELECT p, e1.elementDesc as type1, e2.elementDesc as type2 " +
@@ -58,7 +58,7 @@ public interface PokemonRepository
                         "INNER JOIN Element e1 ON pe1.elementId = e1.idElement " +
                         "LEFT JOIN PokemonElement pe2 ON p.idPokemon = pe2.pokemonId AND pe2.elementNumber = 2 " +
                         "LEFT JOIN Element e2 ON pe2.elementId = e2.idElement " +
-                        "WHERE p.total = :total")
+                        "WHERE p.total = :total ORDER BY p.idPokemon")
         List<Object> findDetailedPokemonsByTotal(int total);
 
         @Query("SELECT p, e1.elementDesc as type1, e2.elementDesc as type2 " +
@@ -67,7 +67,7 @@ public interface PokemonRepository
                         "INNER JOIN Element e1 ON pe1.elementId = e1.idElement " +
                         "LEFT JOIN PokemonElement pe2 ON p.idPokemon = pe2.pokemonId AND pe2.elementNumber = 2 " +
                         "LEFT JOIN Element e2 ON pe2.elementId = e2.idElement " +
-                        "WHERE p.hp = :hp")
+                        "WHERE p.hp = :hp ORDER BY p.idPokemon")
         List<Object> findDetailedPokemonsByHp(int hp);
 
         @Query("SELECT p, e1.elementDesc as type1, e2.elementDesc as type2 " +
@@ -76,7 +76,7 @@ public interface PokemonRepository
                         "INNER JOIN Element e1 ON pe1.elementId = e1.idElement " +
                         "LEFT JOIN PokemonElement pe2 ON p.idPokemon = pe2.pokemonId AND pe2.elementNumber = 2 " +
                         "LEFT JOIN Element e2 ON pe2.elementId = e2.idElement " +
-                        "WHERE p.attack = :attack")
+                        "WHERE p.attack = :attack ORDER BY p.idPokemon")
         List<Object> findDetailedPokemonsByAttack(int attack);
 
         @Query("SELECT p, e1.elementDesc as type1, e2.elementDesc as type2 " +
@@ -85,7 +85,7 @@ public interface PokemonRepository
                         "INNER JOIN Element e1 ON pe1.elementId = e1.idElement " +
                         "LEFT JOIN PokemonElement pe2 ON p.idPokemon = pe2.pokemonId AND pe2.elementNumber = 2 " +
                         "LEFT JOIN Element e2 ON pe2.elementId = e2.idElement " +
-                        "WHERE p.defense = :defense")
+                        "WHERE p.defense = :defense ORDER BY p.idPokemon")
         List<Object> findDetailedPokemonsByDefense(int defense);
 
         @Query("SELECT p, e1.elementDesc as type1, e2.elementDesc as type2 " +
@@ -94,7 +94,7 @@ public interface PokemonRepository
                         "INNER JOIN Element e1 ON pe1.elementId = e1.idElement " +
                         "LEFT JOIN PokemonElement pe2 ON p.idPokemon = pe2.pokemonId AND pe2.elementNumber = 2 " +
                         "LEFT JOIN Element e2 ON pe2.elementId = e2.idElement " +
-                        "WHERE p.speed = :speed")
+                        "WHERE p.speed = :speed ORDER BY p.idPokemon")
         List<Object> findDetailedPokemonsBySpeed(int speed);
 
         @Query("SELECT p, e1.elementDesc as type1, e2.elementDesc as type2 " +
@@ -103,7 +103,7 @@ public interface PokemonRepository
                         "INNER JOIN Element e1 ON pe1.elementId = e1.idElement " +
                         "LEFT JOIN PokemonElement pe2 ON p.idPokemon = pe2.pokemonId AND pe2.elementNumber = 2 " +
                         "LEFT JOIN Element e2 ON pe2.elementId = e2.idElement " +
-                        "WHERE p.speedAttack = :speedAttack")
+                        "WHERE p.speedAttack = :speedAttack ORDER BY p.idPokemon")
         List<Object> findDetailedPokemonsBySpeedAttack(int speedAttack);
 
         @Query("SELECT p, e1.elementDesc as type1, e2.elementDesc as type2 " +
@@ -112,7 +112,7 @@ public interface PokemonRepository
                         "INNER JOIN Element e1 ON pe1.elementId = e1.idElement " +
                         "LEFT JOIN PokemonElement pe2 ON p.idPokemon = pe2.pokemonId AND pe2.elementNumber = 2 " +
                         "LEFT JOIN Element e2 ON pe2.elementId = e2.idElement " +
-                        "WHERE p.speedDefense = :speedDefense")
+                        "WHERE p.speedDefense = :speedDefense ORDER BY p.idPokemon")
         List<Object> findDetailedPokemonsBySpeedDefense(int speedDefense);
 
         @Query("SELECT p, e1.elementDesc as type1, e2.elementDesc as type2 " +
@@ -121,7 +121,7 @@ public interface PokemonRepository
                         "INNER JOIN Element e1 ON pe1.elementId = e1.idElement " +
                         "LEFT JOIN PokemonElement pe2 ON p.idPokemon = pe2.pokemonId AND pe2.elementNumber = 2 " +
                         "LEFT JOIN Element e2 ON pe2.elementId = e2.idElement " +
-                        "WHERE p.generation = :generation")
+                        "WHERE p.generation = :generation ORDER BY p.idPokemon")
         List<Object> findDetailedPokemonsByGeneration(int generation);
 
         @Query("SELECT p, e1.elementDesc as type1, e2.elementDesc as type2 " +
@@ -130,7 +130,7 @@ public interface PokemonRepository
                         "INNER JOIN Element e1 ON pe1.elementId = e1.idElement " +
                         "LEFT JOIN PokemonElement pe2 ON p.idPokemon = pe2.pokemonId AND pe2.elementNumber = 2 " +
                         "LEFT JOIN Element e2 ON pe2.elementId = e2.idElement " +
-                        "WHERE p.legendary = :legendary")
+                        "WHERE p.legendary = :legendary ORDER BY p.idPokemon")
         List<Object> findDetailedPokemonsByLegendary(String legendary);
 
         // APAGAR

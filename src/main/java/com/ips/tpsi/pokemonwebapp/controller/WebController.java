@@ -18,7 +18,6 @@ public class WebController {
 
     @Autowired
     ElementService elementBC;
-    private int pokemonId;
 
     public WebController(PokemonService pokemonBC, ElementService elementBC) {
         this.pokemonBC = pokemonBC;
@@ -96,52 +95,74 @@ public class WebController {
     public ModelAndView postAlterar(
             @RequestParam(name = "pokemonId") int pokemonId,
             @RequestParam(name = "attribute") String attribute,
-            @RequestParam(name = "newValue") String newValue){
+            @RequestParam(name = "newValue") String newValue) {
         ModelAndView mv = new ModelAndView("alterar.html");
         try {
             switch (attribute) {
                 case "pokemonName":
-                    pokemonBC.updatePokemonName(pokemonId,newValue);
+                    pokemonBC.updatePokemonName(pokemonId, newValue);
                     break;
                 case "total":
-                    pokemonBC.updatePokemonTotal(pokemonId,Integer.parseInt(newValue));
+                    pokemonBC.updatePokemonTotal(pokemonId, Integer.parseInt(newValue));
                     break;
                 case "hp":
-                    pokemonBC.updatePokemonHp(pokemonId,Integer.parseInt(newValue));
+                    pokemonBC.updatePokemonHp(pokemonId, Integer.parseInt(newValue));
                     break;
                 case "attack":
-                    pokemonBC.updatePokemonAttack(pokemonId,Integer.parseInt(newValue));
+                    pokemonBC.updatePokemonAttack(pokemonId, Integer.parseInt(newValue));
                     break;
                 case "defense":
-                    pokemonBC.updatePokemonDefense(pokemonId,Integer.parseInt(newValue));
+                    pokemonBC.updatePokemonDefense(pokemonId, Integer.parseInt(newValue));
                     break;
                 case "speed":
-                    pokemonBC.updatePokemonSpeed(pokemonId,Integer.parseInt(newValue));
+                    pokemonBC.updatePokemonSpeed(pokemonId, Integer.parseInt(newValue));
                     break;
                 case "speedAttack":
-                    pokemonBC.updatePokemonSpeedAttack(pokemonId,Integer.parseInt(newValue));
+                    pokemonBC.updatePokemonSpeedAttack(pokemonId, Integer.parseInt(newValue));
                     break;
                 case "speedDefense":
-                    pokemonBC.updatePokemonSpeedDefense(pokemonId,Integer.parseInt(newValue));
+                    pokemonBC.updatePokemonSpeedDefense(pokemonId, Integer.parseInt(newValue));
                     break;
                 case "generation":
-                    pokemonBC.updatePokemonGeneration(pokemonId,Integer.parseInt(newValue));
+                    pokemonBC.updatePokemonGeneration(pokemonId, Integer.parseInt(newValue));
                     break;
                 case "legendary":
-                    pokemonBC.updatePokemonLegendary(pokemonId,newValue);
+                    if ("true".equalsIgnoreCase(newValue) || "false".equalsIgnoreCase(newValue)) {
+                        pokemonBC.updatePokemonLegendary(pokemonId, newValue);
+                    } else {
+                        mv.addObject("errorMessage", "O valor para o campo 'Legendary' deve ser 'true' ou 'false'.");
+                    }
+                    break;
+                case "element1":
+                    if (!elementBC.isElementExists(newValue)) {
+                        mv.addObject("errorMessage",
+                                "O elemento '" + newValue + "' não existe. Por favor, insira um elemento válido.");
+                    } else {
+                        pokemonBC.updatePokemonElement1(pokemonId, newValue);
+                    }
+                    break;
+                case "element2":
+                    if (!elementBC.isElementExists(newValue)) {
+                        mv.addObject("errorMessage",
+                                "O elemento '" + newValue + "' não existe. Por favor, insira um elemento válido.");
+                    } else {
+                        pokemonBC.updatePokemonElement2(pokemonId, newValue);
+                    }
                     break;
                 default:
                     mv.addObject("errorMessage", "Tipo de alteração não suportado.");
                     break;
             }
             mv.addObject("successMessage", "Pokémon(s) alterados(s) com sucesso.");
+            mv.addObject("pokemonId", pokemonId);
         } catch (NumberFormatException e) {
             mv.addObject("errorMessage",
                     "Erro ao converter o critério para alteração. Certifique-se de inserir um valor válido.");
         }
+        
         mv.addObject("attribute", attribute);
-        mv.addObject("pokemons", pokemonBC.getDetailedPokemons());
         mv.addObject("newValue", newValue);
+        mv.addObject("pokemons", pokemonBC.getDetailedPokemons());
 
         return mv;
     }

@@ -12,6 +12,7 @@ import org.springframework.transaction.annotation.Transactional;
 public interface PokemonElementRepository
 		extends JpaRepository<PokemonElement, Integer> {
 
+	// APAGAR
 	@Transactional
 	@Modifying
 	@Query("DELETE FROM PokemonElement pe WHERE pe.pokemonId = :id")
@@ -82,4 +83,19 @@ public interface PokemonElementRepository
 	@Query("DELETE FROM PokemonElement pe WHERE pe.pokemonId IN (" +
 			"SELECT p.idPokemon FROM Pokemon p WHERE p.legendary = :legendary)")
 	void deleteByLegendary(@Param("legendary") String legendary);
+
+    @Transactional
+    @Modifying
+    @Query("UPDATE PokemonElement pe " +
+            "SET pe.elementId = (SELECT e.idElement FROM Element e WHERE e.elementDesc = :newElement1) " +
+            "WHERE pe.pokemonId = :id AND pe.elementNumber = 1")
+    void updatePokemonElement1(@Param("id") Integer id, @Param("newElement1") String newElement1);
+
+@Transactional
+    @Modifying
+    @Query("UPDATE PokemonElement pe " +
+            "SET pe.elementId = (SELECT e.idElement FROM Element e WHERE e.elementDesc = :newElement2) " +
+            "WHERE pe.pokemonId = :id AND pe.elementNumber = 2")
+    void updatePokemonElement2(@Param("id") Integer id, @Param("newElement2") String newElement2);
+
 }

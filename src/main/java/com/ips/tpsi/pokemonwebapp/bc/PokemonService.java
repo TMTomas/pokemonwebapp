@@ -144,50 +144,59 @@ public class PokemonService {
         pokemonRepository.deleteByLegendary(legendary);
     }
 
-    public void updatePokemonName(int id, String newName){
+    public void updatePokemonName(int id, String newName) {
 
         pokemonRepository.updatePokemonName(id, newName);
     }
 
-    public void updatePokemonTotal(int id, int newTotal){
+    public void updatePokemonTotal(int id, int newTotal) {
 
         pokemonRepository.updatePokemonTotal(id, newTotal);
     }
 
-    public void updatePokemonHp(int id, int newHp){
+    public void updatePokemonHp(int id, int newHp) {
         pokemonRepository.updatePokemonHp(id, newHp);
     }
 
-    public void updatePokemonAttack(int id, int newAttack){
-        pokemonRepository.updatePokemonAttack(id,newAttack);
+    public void updatePokemonAttack(int id, int newAttack) {
+        pokemonRepository.updatePokemonAttack(id, newAttack);
     }
 
-    public void updatePokemonDefense(int id, int newDefense){
+    public void updatePokemonDefense(int id, int newDefense) {
         pokemonRepository.updatePokemonDefense(id, newDefense);
     }
 
-    public void updatePokemonSpeed(int id, int newSpeed){
+    public void updatePokemonSpeed(int id, int newSpeed) {
         pokemonRepository.updatePokemonSpeed(id, newSpeed);
 
     }
-    public void updatePokemonSpeedAttack(int id, int newSpeedAttack){
+
+    public void updatePokemonSpeedAttack(int id, int newSpeedAttack) {
         pokemonRepository.updatePokemonSpeedAttack(id, newSpeedAttack);
 
     }
-    public void updatePokemonSpeedDefense(int id, int newSpeedDefense){
+
+    public void updatePokemonSpeedDefense(int id, int newSpeedDefense) {
         pokemonRepository.updatePokemonSpeedDefense(id, newSpeedDefense);
 
     }
-    public void updatePokemonGeneration(int id, int newGeneration){
+
+    public void updatePokemonGeneration(int id, int newGeneration) {
         pokemonRepository.updatePokemonGeneration(id, newGeneration);
 
     }
 
-    public void updatePokemonLegendary(int id, String newLegendary){
+    public void updatePokemonLegendary(int id, String newLegendary) {
         pokemonRepository.updatePokemonLegendary(id, newLegendary);
 
     }
 
+    public void updatePokemonElement1(int id, String newElement1) {
+        pokemonElementRepository.updatePokemonElement1(id, newElement1);
+    }
 
+    public void updatePokemonElement2(int id, String newElement2) {
+        pokemonElementRepository.updatePokemonElement2(id, newElement2);
+    }
 
 }

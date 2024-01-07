@@ -18,4 +18,8 @@ public class ElementService {
     public Iterable<Element> getElements() {
         return elementRepository.findAll();
     }
+
+    public boolean isElementExists(String elementDesc) {
+        return elementRepository.existsByElementDesc(elementDesc);
+    }
 }
