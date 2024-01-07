@@ -28,24 +28,68 @@
 
             <label for="attribute">Selecionar Atributo a ser Alterado:</label>
             <select id="search-type" name="attribute">
-                <option value="pokemonName">Nome</option>
-                <option value="total">Total</option>
-                <option value="hp">HP</option>
-                <option value="attack">Attack</option>
-                <option value="defense">Defense</option>
-                <option value="speed">Speed</option>
-                <option value="speedAttack">Speed Attack</option>
-                <option value="speedDefense">Speed Defense</option>
-                <option value="generation">Generation</option>
-                <option value="legendary">Legendary</option>
+                <option value="pokemonName" th:selected="${attribute == 'pokemonName'}">Nome</option>
+                <option value="total" th:selected="${attribute == 'total'}">Total</option>
+                <option value="hp" th:selected="${attribute == 'hp'}">HP</option>
+                <option value="attack" th:selected="${attribute == 'attack'}">Attack</option>
+                <option value="defense" th:selected="${attribute == 'defense'}">Defense</option>
+                <option value="speed" th:selected="${attribute == 'speed'}">Speed</option>
+                <option value="speedAttack" th:selected="${attribute == 'speedAttack'}">Speed Attack</option>
+                <option value="speedDefense" th:selected="${attribute == 'speedDefense'}">Speed Defense</option>
+                <option value="generation" th:selected="${attribute == 'generation'}">Generation</option>
+                <option value="legendary" th:selected="${attribute == 'legendary'}">Legendary</option>
             </select>
 
             <label for="new-value">Inserir Novo Valor:</label>
-            <input type="text" id="new-value" name="newValue" class="search-input" required />
+            <input type="text" id="new-value" name="newValue" placeholder="Novo Valor" class="search-input" required />
 
             <button type="submit" class="search-button">Atualizar</button>
         </form>
+        <th:block th:if="${invalidInput}">
+            <div class="error-message">
+                <p th:text="${invalidInput}"></p>
+            </div>
+        </th:block>
     </div>
+        <div class="pokemon-info" th:if="${!invalidInput}">
+            <h2 th:text="${successMessage}"></h2>
+            <table>
+                <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Nome</th>
+                    <th>Total</th>
+                    <th>HP</th>
+                    <th>Attack</th>
+                    <th>Defense</th>
+                    <th>Speed</th>
+                    <th>Speed Attack</th>
+                    <th>Speed Defense</th>
+                    <th>Generation</th>
+                    <th>Legendary</th>
+                    <th>Type 1</th>
+                    <th>Type 2</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr th:each="pokemon : ${pokemons}">
+                    <td th:text="${pokemon[0].idPokemon}"></td>
+                    <td th:text="${pokemon[0].pokemonName}"></td>
+                    <td th:text="${pokemon[0].total}"></td>
+                    <td th:text="${pokemon[0].hp}"></td>
+                    <td th:text="${pokemon[0].attack}"></td>
+                    <td th:text="${pokemon[0].defense}"></td>
+                    <td th:text="${pokemon[0].speed}"></td>
+                    <td th:text="${pokemon[0].speedAttack}"></td>
+                    <td th:text="${pokemon[0].speedDefense}"></td>
+                    <td th:text="${pokemon[0].generation}"></td>
+                    <td th:text="${pokemon[0].legendary}"></td>
+                    <td th:text="${pokemon[1]}"></td>
+                    <td th:text="${pokemon[2]}"></td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
 </body>
 
 </html>

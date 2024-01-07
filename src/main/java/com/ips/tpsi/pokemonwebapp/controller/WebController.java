@@ -18,6 +18,7 @@ public class WebController {
 
     @Autowired
     ElementService elementBC;
+    private int pokemonId;
 
     public WebController(PokemonService pokemonBC, ElementService elementBC) {
         this.pokemonBC = pokemonBC;
@@ -91,6 +92,60 @@ public class WebController {
         return mv;
     }
 
+    @PostMapping("/alterar")
+    public ModelAndView postAlterar(
+            @RequestParam(name = "pokemonId") int pokemonId,
+            @RequestParam(name = "attribute") String attribute,
+            @RequestParam(name = "newValue") String newValue){
+        ModelAndView mv = new ModelAndView("alterar.html");
+        try {
+            switch (attribute) {
+                case "pokemonName":
+                    pokemonBC.updatePokemonName(pokemonId,newValue);
+                    break;
+                case "total":
+                    pokemonBC.updatePokemonTotal(pokemonId,Integer.parseInt(newValue));
+                    break;
+                case "hp":
+                    pokemonBC.updatePokemonHp(pokemonId,Integer.parseInt(newValue));
+                    break;
+                case "attack":
+                    pokemonBC.updatePokemonAttack(pokemonId,Integer.parseInt(newValue));
+                    break;
+                case "defense":
+                    pokemonBC.updatePokemonDefense(pokemonId,Integer.parseInt(newValue));
+                    break;
+                case "speed":
+                    pokemonBC.updatePokemonSpeed(pokemonId,Integer.parseInt(newValue));
+                    break;
+                case "speedAttack":
+                    pokemonBC.updatePokemonSpeedAttack(pokemonId,Integer.parseInt(newValue));
+                    break;
+                case "speedDefense":
+                    pokemonBC.updatePokemonSpeedDefense(pokemonId,Integer.parseInt(newValue));
+                    break;
+                case "generation":
+                    pokemonBC.updatePokemonGeneration(pokemonId,Integer.parseInt(newValue));
+                    break;
+                case "legendary":
+                    pokemonBC.updatePokemonLegendary(pokemonId,newValue);
+                    break;
+                default:
+                    mv.addObject("errorMessage", "Tipo de alteração não suportado.");
+                    break;
+            }
+            mv.addObject("successMessage", "Pokémon(s) alterados(s) com sucesso.");
+        } catch (NumberFormatException e) {
+            mv.addObject("invalidInput",
+                    "Erro ao converter o critério para alteração. Certifique-se de inserir um valor válido.");
+        }
+        mv.addObject("attribute", attribute);
+        mv.addObject("pokemons", pokemonBC.getDetailedPokemons());
+        mv.addObject("newValue", newValue);
+
+        return mv;
+    }
+
     @GetMapping("/apagar")
     public ModelAndView getApagar() {
         ModelAndView mv = new ModelAndView("apagar.html");
@@ -144,9 +199,9 @@ public class WebController {
                     mv.addObject("errorMessage", "Tipo de exclusão não suportado.");
                     break;
             }
-            mv.addObject("successMessage", "Pokémon(s) excluído(s) com sucesso.");
+            mv.addObject("successMessage", "Pokémon(s) apagados(s) com sucesso.");
         } catch (NumberFormatException e) {
-            mv.addObject("errorMessage",
+            mv.addObject("invalidInput",
                     "Erro ao converter o critério para exclusão. Certifique-se de inserir um valor válido.");
         }
         mv.addObject("deleteType", deleteType);

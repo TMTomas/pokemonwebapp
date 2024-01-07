@@ -197,4 +197,55 @@ public interface PokemonRepository
                         "SELECT e.idElement FROM Element e WHERE e.elementDesc = :elementDesc))")
         void deleteByElement(@Param("elementDesc") String elementDesc);
 
+        // ALTERAR
+        @Transactional
+        @Modifying
+        @Query("UPDATE Pokemon p SET p.pokemonName = :newName WHERE p.idPokemon = :id")
+        void updatePokemonName(@Param("id") Integer id, @Param("newName") String newName);
+
+        @Transactional
+        @Modifying
+        @Query("UPDATE Pokemon p SET p.total = :newTotal WHERE p.idPokemon = :id")
+        void updatePokemonTotal(@Param("id") Integer id, @Param("newTotal") Integer newTotal);
+
+        @Transactional
+        @Modifying
+        @Query("UPDATE Pokemon p SET p.hp = :newHp WHERE p.idPokemon = :id")
+        void updatePokemonHp(@Param("id") Integer id, @Param("newHp") Integer newHp);
+
+        @Transactional
+        @Modifying
+        @Query("UPDATE Pokemon p SET p.attack = :newAttack WHERE p.idPokemon = :id")
+        void updatePokemonAttack(@Param("id") Integer id, @Param("newAttack") Integer newAttack);
+
+        @Transactional
+        @Modifying
+        @Query("UPDATE Pokemon p SET p.defense = :newDefense WHERE p.idPokemon = :id")
+        void updatePokemonDefense(@Param("id") Integer id, @Param("newDefense") Integer newDefense);
+
+        @Transactional
+        @Modifying
+        @Query("UPDATE Pokemon p SET p.speed = :newSpeed WHERE p.idPokemon = :id")
+        void updatePokemonSpeed(@Param("id") Integer id, @Param("newSpeed") Integer newSpeed);
+
+        @Transactional
+        @Modifying
+        @Query("UPDATE Pokemon p SET p.speedAttack = :newSpeedAttack WHERE p.idPokemon = :id")
+        void updatePokemonSpeedAttack(@Param("id") Integer id, @Param("newSpeedAttack") Integer newSpeedAttack);
+
+        @Transactional
+        @Modifying
+        @Query("UPDATE Pokemon p SET p.speedDefense = :newSpeedDefense WHERE p.idPokemon = :id")
+        void updatePokemonSpeedDefense(@Param("id") Integer id, @Param("newSpeedDefense") Integer newSpeedDefense);
+
+        @Transactional
+        @Modifying
+        @Query("UPDATE Pokemon p SET p.generation = :newGeneration WHERE p.idPokemon = :id")
+        void updatePokemonGeneration(@Param("id") Integer id, @Param("newGeneration") Integer newGeneration);
+
+        @Transactional
+        @Modifying
+        @Query("UPDATE Pokemon p SET p.legendary = :newLegendary WHERE p.idPokemon = :id")
+        void updatePokemonLegendary(@Param("id") Integer id, @Param("newLegendary") String newLegendary);
+
 }
