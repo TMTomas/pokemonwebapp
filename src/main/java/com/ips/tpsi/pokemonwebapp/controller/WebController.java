@@ -98,6 +98,7 @@ public class WebController {
             @RequestParam(name = "newValue") String newValue) {
         ModelAndView mv = new ModelAndView("alterar.html");
         try {
+            boolean updateSuccessful = false;
             switch (attribute) {
                 case "pokemonName":
                     pokemonBC.updatePokemonName(pokemonId, newValue);
@@ -153,13 +154,15 @@ public class WebController {
                     mv.addObject("errorMessage", "Tipo de alteração não suportado.");
                     break;
             }
-            mv.addObject("successMessage", "Pokémon(s) alterados(s) com sucesso.");
+            if (updateSuccessful) {
+                mv.addObject("successMessage", "Pokémon(s) alterados(s) com sucesso.");
+            }
             mv.addObject("pokemonId", pokemonId);
         } catch (NumberFormatException e) {
             mv.addObject("errorMessage",
                     "Erro ao converter o critério para alteração. Certifique-se de inserir um valor válido.");
         }
-        
+
         mv.addObject("attribute", attribute);
         mv.addObject("newValue", newValue);
         mv.addObject("pokemons", pokemonBC.getDetailedPokemons());
@@ -179,6 +182,7 @@ public class WebController {
             @RequestParam(name = "pokemonCriteria") String pokemonCriteria) {
         ModelAndView mv = new ModelAndView("apagar.html");
         try {
+            boolean updateSuccessful = false;
             switch (deleteType) {
                 case "id":
                     pokemonBC.deletePokemonById(Integer.parseInt(pokemonCriteria));
@@ -220,7 +224,9 @@ public class WebController {
                     mv.addObject("errorMessage", "Tipo de exclusão não suportado.");
                     break;
             }
-            mv.addObject("successMessage", "Pokémon(s) apagados(s) com sucesso.");
+            if (updateSuccessful) {
+                mv.addObject("successMessage", "Pokémon(s) alterados(s) com sucesso.");
+            }
         } catch (NumberFormatException e) {
             mv.addObject("errorMessage",
                     "Erro ao converter o critério para exclusão. Certifique-se de inserir um valor válido.");
